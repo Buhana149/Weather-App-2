@@ -1,7 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:provider/provider.dart';
 import 'package:weather/weather.dart';
 import 'package:weather_app_2/consts.dart';
+import 'package:weather_app_2/provider/weather_provide.dart';
+import 'package:weather_app_2/ui_utilities/weather_appbar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,13 +17,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final WeatherFactory _wf = WeatherFactory(OPEN_WEATHER_API_KEY);
+  String _city = 'Boston';
 
   Weather? _weather;
+  WeatherProvider? _weatherProvider;
 
   @override
   void initState() {
     super.initState();
-    _wf.currentWeatherByCityName('Vaslui').then((w) {
+    _wf.currentWeatherByCityName(_city).then((w) {
       setState(() {
         _weather = w;
       });
@@ -27,189 +34,149 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _buildUI(),
-    );
-  }
-
-  Widget _buildUI() {
-    if (_weather == null) {
-      return const Center(
-        child: CircularProgressIndicator(),
+    return Consumer<WeatherProvider>(builder: (context, provider, child) {
+      return Scaffold(
+        backgroundColor: Colors.black,
+        appBar: const WeatherAppbar(),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(40, 1.2 * kToolbarHeight, 40, 20),
+          child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: const AlignmentDirectional(3, -0.3),
+                    child: Container(
+                      height: 300,
+                      width: 300,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: const AlignmentDirectional(-3, -0.3),
+                    child: Container(
+                      height: 300,
+                      width: 300,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: const AlignmentDirectional(0, -1.2),
+                    child: Container(
+                      height: 300,
+                      width: 600,
+                      decoration:
+                          const BoxDecoration(color: Colors.orangeAccent),
+                    ),
+                  ),
+                  BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 100,
+                      sigmaY: 100,
+                    ),
+                    child: Container(
+                      decoration:
+                          const BoxDecoration(color: Colors.transparent),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width,
+                    height: MediaQuery.sizeOf(context).height,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.08,
+                        ),
+                        InkWell(
+                          onTap: _showCitySelectionDialog,
+                          child: Text(
+                            _city,
+                            style: const TextStyle(
+                              fontSize: 36,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        // _dateTimeInfo(),
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.05,
+                        ),
+                        // _weatherIcon(),
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.02,
+                        ),
+                        // _currentTemp(),
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.02,
+                        ),
+                        // _extraInfo(),
+                      ],
+                    ),
+                  )
+                ],
+              )),
+        ),
       );
-    }
-    return SizedBox(
-      width: MediaQuery.sizeOf(context).width,
-      height: MediaQuery.sizeOf(context).height,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _locationHeader(),
-          SizedBox(
-            height: MediaQuery.sizeOf(context).height * 0.08,
-          ),
-          _dateTimeInfo(),
-          SizedBox(
-            height: MediaQuery.sizeOf(context).height * 0.05,
-          ),
-          _weatherIcon(),
-          SizedBox(
-            height: MediaQuery.sizeOf(context).height * 0.02,
-          ),
-          _currentTemp(),
-          SizedBox(
-            height: MediaQuery.sizeOf(context).height * 0.02,
-          ),
-          _extraInfo(),
-        ],
-      ),
-    );
+    });
   }
 
-  Widget _locationHeader() {
-    return Text(
-      _weather?.areaName ?? '',
-      style: const TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-      ),
-    );
-  }
-
-  Widget _dateTimeInfo() {
-    DateTime now = _weather!.date!;
-    return Column(
-      children: [
-        Text(
-          DateFormat('h:mm a').format(now),
-          style: const TextStyle(
-            fontSize: 35,
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Text(
-              DateFormat('EEEE').format(now),
-              style: const TextStyle(
-                fontWeight: FontWeight.w700,
+  void _showCitySelectionDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Enter City Name'),
+            content: TypeAheadField(
+              builder: (context, controller, focusNode) {
+                return TextField(
+                  controller: controller,
+                  focusNode: focusNode,
+                  autofocus: true,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(), labelText: 'City'),
+                );
+              },
+              itemBuilder: (context, suggestion) {
+                return ListTile(
+                  title: Text(suggestion?['areaName'] ?? 'Unknown City'),
+                );
+              },
+              onSelected: (city) {
+                setState(() {
+                  _city = city?['areaName'] ?? 'Unknown City';
+                });
+              },
+              suggestionsCallback: (pattern) async {
+                final suggestions =
+                    await _weatherProvider?.locationHeaderProvider(pattern);
+                return suggestions ?? [];
+              },
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Cancel'),
               ),
-            ),
-            Text(
-              '  ${DateFormat('m.d.y').format(now)}',
-              style: const TextStyle(
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ],
-        )
-      ],
-    );
-  }
-
-  Widget _weatherIcon() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          height: MediaQuery.sizeOf(context).height * 0.20,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(
-                  'http://openweathermap.org/img/wn/${_weather?.weatherIcon}@4x.png'),
-            ),
-          ),
-        ),
-        Text(
-          _weather?.weatherDescription ?? '',
-          style: const TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _currentTemp() {
-    return Text(
-      '${_weather?.temperature?.celsius?.toStringAsFixed(0)} °C',
-      style: const TextStyle(
-        color: Colors.black,
-        fontSize: 90,
-        fontWeight: FontWeight.w500,
-      ),
-    );
-  }
-
-  Widget _extraInfo() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: MediaQuery.sizeOf(context).height * 0.15,
-        width: MediaQuery.sizeOf(context).width,
-        decoration: BoxDecoration(
-            color: Colors.deepPurpleAccent,
-            borderRadius: BorderRadius.circular(20)),
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text(
-                  'Max: ${_weather?.tempMax?.celsius?.toStringAsFixed(0)}°C',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  ),
-                ),
-                Text(
-                  'Min: ${_weather?.tempMin?.celsius?.toStringAsFixed(0)}°C',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text(
-                  'Wind: ${_weather?.windSpeed?.toStringAsFixed(0)}m/s',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  ),
-                ),
-                Text(
-                  'Humidity: ${_weather?.humidity?.toStringAsFixed(0)}%',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
+              TextButton(
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    _weatherProvider?.locationHeaderProvider(_city);
+                  },
+                  child: const Text('Submit'))
+            ],
+          );
+        });
   }
 }

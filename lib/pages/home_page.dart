@@ -1,12 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:provider/provider.dart';
-import 'package:weather/weather.dart';
-import 'package:weather_app_2/consts.dart';
-import 'package:weather_app_2/provider/weather_provide.dart';
-import 'package:weather_app_2/ui_utilities/weather_appbar.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:weather_app_2/services/weather_services.dart';
+import 'package:weather_app_2/ui_utilities/build_weather_details.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,167 +13,144 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final WeatherFactory _wf = WeatherFactory(OPEN_WEATHER_API_KEY);
-  String _city = 'Boston';
-
-  Weather? _weather;
-  WeatherProvider? _weatherProvider;
+  final WeatherServices _weatherServices = WeatherServices();
+  String _city = 'London';
+  Map<String, dynamic>? _currentWeather;
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    _wf.currentWeatherByCityName(_city).then((w) {
+    _fetchWeather();
+  }
+
+  Future<void> _fetchWeather() async {
+    try {
+      final weatherData = await _weatherServices.fetchCurrentWeather(_city);
       setState(() {
-        _weather = w;
+        _currentWeather = weatherData;
       });
-    });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<WeatherProvider>(builder: (context, provider, child) {
-      return Scaffold(
-        backgroundColor: Colors.black,
-        appBar: const WeatherAppbar(),
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(40, 1.2 * kToolbarHeight, 40, 20),
-          child: SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: Stack(
+    return Scaffold(
+      body: _currentWeather == null
+          ? Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                    Color(0xFF1A2344),
+                    Color.fromARGB(255, 125, 32, 142),
+                    Colors.purple,
+                    Color.fromARGB(255, 151, 44, 170),
+                  ])),
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                ),
+              ),
+            )
+          : Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                    Color(0xFF1A2344),
+                    Color.fromARGB(255, 125, 32, 142),
+                    Colors.purple,
+                    Color.fromARGB(255, 151, 44, 170),
+                  ])),
+              child: ListView(
                 children: [
-                  Align(
-                    alignment: const AlignmentDirectional(3, -0.3),
-                    child: Container(
-                      height: 300,
-                      width: 300,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.deepPurple,
-                      ),
-                    ),
+                  SizedBox(
+                    height: 10,
                   ),
-                  Align(
-                    alignment: const AlignmentDirectional(-3, -0.3),
-                    child: Container(
-                      height: 300,
-                      width: 300,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.deepPurple,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: const AlignmentDirectional(0, -1.2),
-                    child: Container(
-                      height: 300,
-                      width: 600,
-                      decoration:
-                          const BoxDecoration(color: Colors.orangeAccent),
-                    ),
-                  ),
-                  BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: 100,
-                      sigmaY: 100,
-                    ),
-                    child: Container(
-                      decoration:
-                          const BoxDecoration(color: Colors.transparent),
+                  Text(
+                    _city,
+                    style: GoogleFonts.lato(
+                      fontSize: 36,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(
-                    width: MediaQuery.sizeOf(context).width,
-                    height: MediaQuery.sizeOf(context).height,
+                    height: 10,
+                  ),
+                  Center(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.08,
+                        Image.network(
+                          'http:${_currentWeather!['current']['condition']['icon']}',
+                          height: 100,
+                          width: 100,
+                          fit: BoxFit.cover,
                         ),
-                        InkWell(
-                          onTap: _showCitySelectionDialog,
-                          child: Text(
-                            _city,
-                            style: const TextStyle(
-                              fontSize: 36,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        Text(
+                          '${_currentWeather!['current']['temp_c'].round()}°C',
+                          style: GoogleFonts.lato(
+                            fontSize: 40,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        // _dateTimeInfo(),
-                        SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.05,
+                        Text(
+                          '${_currentWeather!['current']['condition']['text']}',
+                          style: GoogleFonts.lato(
+                            fontSize: 40,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        // _weatherIcon(),
                         SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.02,
+                          height: 10,
                         ),
-                        // _currentTemp(),
-                        SizedBox(
-                          height: MediaQuery.sizeOf(context).height * 0.02,
-                        ),
-                        // _extraInfo(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              'Max: ${_currentWeather!['forecast']['forecastday'][0]['day']['maxtemp_c'].round()}°C',
+                              style: GoogleFonts.lato(
+                                fontSize: 22,
+                                color: Colors.white70,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              'Min: ${_currentWeather!['forecast']['forecastday'][0]['day']['mintemp_c'].round()}°C',
+                              style: GoogleFonts.lato(
+                                fontSize: 22,
+                                color: Colors.white70,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     ),
+                  ),
+                  SizedBox(
+                    height: 45,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      BuildWeatherDetails(
+                        label: 'Sunrise',
+                        icon: Icons.wb_sunny,
+                        value: _currentWeather!['forecast']['forecastday'][0]['astro']['sunrise']),
+                    ],
                   )
                 ],
-              )),
-        ),
-      );
-    });
-  }
-
-  void _showCitySelectionDialog() {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Enter City Name'),
-            content: TypeAheadField(
-              builder: (context, controller, focusNode) {
-                return TextField(
-                  controller: controller,
-                  focusNode: focusNode,
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), labelText: 'City'),
-                );
-              },
-              itemBuilder: (context, suggestion) {
-                return ListTile(
-                  title: Text(suggestion?['areaName'] ?? 'Unknown City'),
-                );
-              },
-              onSelected: (city) {
-                setState(() {
-                  _city = city?['areaName'] ?? 'Unknown City';
-                });
-              },
-              suggestionsCallback: (pattern) async {
-                final suggestions =
-                    await _weatherProvider?.locationHeaderProvider(pattern);
-                return suggestions ?? [];
-              },
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('Cancel'),
               ),
-              TextButton(
-                  onPressed: () async {
-                    Navigator.pop(context);
-                    _weatherProvider?.locationHeaderProvider(_city);
-                  },
-                  child: const Text('Submit'))
-            ],
-          );
-        });
+            ),
+    );
   }
 }

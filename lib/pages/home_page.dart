@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:weather_app_2/pages/forecast_page.dart';
 import 'package:weather_app_2/services/weather_services.dart';
 import 'package:weather_app_2/ui_utilities/build_weather_details.dart';
 
@@ -33,6 +35,53 @@ class _HomePageState extends State<HomePage> {
     } catch (e) {
       print(e);
     }
+  }
+
+  void _showCitySelectionDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Enter City Name'),
+          content: TypeAheadField(builder: (context, controller, focusNode) {
+            return TextField(
+              controller: controller,
+              focusNode: focusNode,
+              autofocus: true,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'City',
+              ),
+            );
+          }, itemBuilder: (context, suggestion) {
+            return ListTile(
+              title: Text(suggestion['name']),
+            );
+          }, onSelected: (city) {
+            setState(() {
+              _city = city['name'];
+            });
+          }, suggestionsCallback: (pattern) async {
+            return await _weatherServices.fetchCitySuggestions(pattern);
+          }),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                _fetchWeather();
+              },
+              child: Text('Submit'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -73,12 +122,15 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    _city,
-                    style: GoogleFonts.lato(
-                      fontSize: 36,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                  InkWell(
+                    onTap: _showCitySelectionDialog,
+                    child: Text(
+                      _city,
+                      style: GoogleFonts.lato(
+                        fontSize: 36,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -110,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -143,11 +195,51 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       BuildWeatherDetails(
-                        label: 'Sunrise',
-                        icon: Icons.wb_sunny,
-                        value: _currentWeather!['forecast']['forecastday'][0]['astro']['sunrise']),
+                          label: 'Sunrise',
+                          icon: Icons.wb_sunny,
+                          value: _currentWeather!['forecast']['forecastday'][0]
+                              ['astro']['sunrise']),
+                      BuildWeatherDetails(
+                          label: 'Sunset',
+                          icon: Icons.brightness_3,
+                          value: _currentWeather!['forecast']['forecastday'][0]
+                              ['astro']['sunset']),
                     ],
-                  )
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      BuildWeatherDetails(
+                          label: 'Humidity',
+                          icon: Icons.opacity,
+                          value: _currentWeather!['current']['humidity']),
+                      BuildWeatherDetails(
+                          label: 'Wind (KPH)',
+                          icon: Icons.wind_power,
+                          value: _currentWeather!['current']['wind_kph']),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ForecastPage(city: _city,)));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF1A2344),
+                      ),
+                      child: Text(
+                        'Next 7 Days Forecast',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

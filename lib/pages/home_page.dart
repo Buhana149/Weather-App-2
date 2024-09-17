@@ -7,6 +7,7 @@ import 'package:weather_app_2/pages/forecast_page.dart';
 import 'package:weather_app_2/services/weather_services.dart';
 import 'package:weather_app_2/ui_utilities/build_weather_details.dart';
 import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
+import 'package:weather_app_2/ui_utilities/home_weather_details.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -104,9 +105,7 @@ class _HomePageState extends State<HomePage> {
                   ])),
               child: ListView(
                 children: [
-                  SizedBox(
-                    height: 10,
-                  ),
+                  SizedBox(height: 10),
                   InkWell(
                     onTap: _showCitySelectionDialog,
                     child: Text(
@@ -121,61 +120,19 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 10,
                   ),
-                  Center(
-                    child: Column(
-                      children: [
-                        Image.network(
-                          'http:${_currentWeather!['current']['condition']['icon']}',
-                          height: 100,
-                          width: 100,
-                          fit: BoxFit.cover,
-                        ),
-                        Text(
-                          '${_currentWeather!['current']['temp_c'].round()}°C',
-                          style: GoogleFonts.lato(
-                            fontSize: 40,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          '${_currentWeather!['current']['condition']['text']}',
-                          style: GoogleFonts.lato(
-                            fontSize: 40,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              'Max: ${_currentWeather!['forecast']['forecastday'][0]['day']['maxtemp_c'].round()}°C',
-                              style: GoogleFonts.lato(
-                                fontSize: 22,
-                                color: Colors.white70,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              'Min: ${_currentWeather!['forecast']['forecastday'][0]['day']['mintemp_c'].round()}°C',
-                              style: GoogleFonts.lato(
-                                fontSize: 22,
-                                color: Colors.white70,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
+                  HomeWeatherDetails(
+                    networkImage:
+                        'http:${_currentWeather!['current']['condition']['icon']}',
+                    currentTemp:
+                        '${_currentWeather!['current']['temp_c'].round()}°C',
+                    currentCondition:
+                        '${_currentWeather!['current']['condition']['text']}',
+                    maxTemp:
+                        'Max: ${_currentWeather!['forecast']['forecastday'][0]['day']['maxtemp_c'].round()}°C',
+                    minTemp:
+                        'Min: ${_currentWeather!['forecast']['forecastday'][0]['day']['mintemp_c'].round()}°C',
                   ),
-                  SizedBox(
-                    height: 45,
-                  ),
+                  SizedBox(height: 45),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -191,9 +148,7 @@ class _HomePageState extends State<HomePage> {
                               ['astro']['sunset']),
                     ],
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -214,7 +169,9 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ForecastPage(city: _city,)));
+                                builder: (context) => ForecastPage(
+                                      city: _city,
+                                    )));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF1A2344),

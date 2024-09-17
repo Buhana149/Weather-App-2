@@ -46,6 +46,6 @@ class ForecastTile extends StatelessWidget {
         ),
       ),
     );
-    ;
+    
   }
 }

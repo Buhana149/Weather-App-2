@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app_2/pages/forecast_page.dart';
 import 'package:weather_app_2/services/weather_services.dart';
 import 'package:weather_app_2/ui_utilities/build_weather_details.dart';
+import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -88,23 +89,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _currentWeather == null
-          ? Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                    Color(0xFF1A2344),
-                    Color.fromARGB(255, 125, 32, 142),
-                    Colors.purple,
-                    Color.fromARGB(255, 151, 44, 170),
-                  ])),
-              child: Center(
-                child: CircularProgressIndicator(
-                  color: Colors.white,
-                ),
-              ),
-            )
+          ? CircularIndicatorUi()
           : Container(
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(

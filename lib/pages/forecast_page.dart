@@ -1,9 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app_2/services/weather_services.dart';
+import 'package:weather_app_2/text_styles/text_style.dart';
 import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
+import 'package:weather_app_2/ui_utilities/forecast_tile.dart';
 
 class ForecastPage extends StatefulWidget {
   final String city;
@@ -44,16 +43,7 @@ class _ForecastPageState extends State<ForecastPage> {
             ? CircularIndicatorUi()
             : Container(
                 height: MediaQuery.of(context).size.height,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                      Color(0xFF1A2344),
-                      Color.fromARGB(255, 125, 32, 142),
-                      Colors.purple,
-                      Color.fromARGB(255, 151, 44, 170),
-                    ])),
+                decoration: purpleGradient,
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -71,16 +61,10 @@ class _ForecastPageState extends State<ForecastPage> {
                                 size: 30,
                               ),
                             ),
-                            SizedBox(
-                              width: 15,
-                            ),
+                            SizedBox(width: 15),
                             Text(
                               '7 Day Forecast',
-                              style: GoogleFonts.lato(
-                                fontSize: 30,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: fontSize30,
                             )
                           ],
                         ),
@@ -93,54 +77,13 @@ class _ForecastPageState extends State<ForecastPage> {
                             final day = _forecast![index];
                             String iconUrl =
                                 'http:${day['day']['condition']['icon']}';
-                            return Padding(
-                              padding: EdgeInsets.all(10),
-                              child: ClipRect(
-                                child: BackdropFilter(
-                                  filter:
-                                      ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                                  child: Container(
-                                      padding: EdgeInsets.all(5),
-                                      height: 110,
-                                      decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                            begin:
-                                                AlignmentDirectional.topStart,
-                                            end: AlignmentDirectional.bottomEnd,
-                                            colors: [
-                                              Color(0xFF1A2344)
-                                                  .withOpacity(0.5),
-                                              Color(0xFF1A2344)
-                                                  .withOpacity(0.2),
-                                            ]),
-                                      ),
-                                      child: ListTile(
-                                        leading: Image.network(iconUrl),
-                                        title: Text(
-                                          '${day['date']}\n${day['day']['avgtemp_c'].round()} °C',
-                                          style: GoogleFonts.lato(
-                                            fontSize: 22,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        subtitle: Text(
-                                          day['day']['condition']['text'],
-                                          style: GoogleFonts.lato(
-                                            fontSize: 16,
-                                            color: Colors.white70,
-                                          ),
-                                        ),
-                                        trailing: Text(
-                                          'Max:${day['day']['maxtemp_c']} °C\nMin:${day['day']['mintemp_c']}',
-                                          style: GoogleFonts.lato(
-                                            fontSize: 18,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      )),
-                                ),
-                              ),
+                            return ForecastTile(
+                              iconImage: iconUrl,
+                              avgTemp:
+                                  '${day['date']}\n${day['day']['avgtemp_c'].round()} °C',
+                              weatherCondition: day['day']['condition']['text'],
+                              maxMinTemp:
+                                  'Max:${day['day']['maxtemp_c']} °C\nMin:${day['day']['mintemp_c']}',
                             );
                           })
                     ],

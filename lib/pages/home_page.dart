@@ -5,8 +5,10 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app_2/pages/forecast_page.dart';
 import 'package:weather_app_2/services/weather_services.dart';
+import 'package:weather_app_2/text_styles/text_style.dart';
 import 'package:weather_app_2/ui_utilities/build_weather_details.dart';
 import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
+import 'package:weather_app_2/ui_utilities/forecast_button.dart';
 import 'package:weather_app_2/ui_utilities/home_weather_details.dart';
 
 class HomePage extends StatefulWidget {
@@ -93,16 +95,7 @@ class _HomePageState extends State<HomePage> {
           ? CircularIndicatorUi()
           : Container(
               padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                    Color(0xFF1A2344),
-                    Color.fromARGB(255, 125, 32, 142),
-                    Colors.purple,
-                    Color.fromARGB(255, 151, 44, 170),
-                  ])),
+              decoration: purpleGradient,
               child: ListView(
                 children: [
                   SizedBox(height: 10),
@@ -110,16 +103,10 @@ class _HomePageState extends State<HomePage> {
                     onTap: _showCitySelectionDialog,
                     child: Text(
                       _city,
-                      style: GoogleFonts.lato(
-                        fontSize: 36,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: fontSize36,
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
+                  SizedBox(height: 10),
                   HomeWeatherDetails(
                     networkImage:
                         'http:${_currentWeather!['current']['condition']['icon']}',
@@ -163,25 +150,10 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ForecastPage(
-                                      city: _city,
-                                    )));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF1A2344),
-                      ),
-                      child: Text(
-                        'Next 7 Days Forecast',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
+                  ForecastButton(
+                      builder: (context) => ForecastPage(
+                            city: _city,
+                          )),
                 ],
               ),
             ),

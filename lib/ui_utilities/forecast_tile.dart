@@ -33,15 +33,15 @@ class ForecastTile extends StatelessWidget {
                 leading: Image.network(iconImage),
                 title: Text(
                   avgTemp,
-                  style: fontSize22,
+                  style: fontSizeMedium,
                 ),
                 subtitle: Text(
                   weatherCondition,
-                  style: fontSize16,
+                  style: fontSizeXSmall,
                 ),
                 trailing: Text(
                   maxMinTemp,
-                  style: fontSize18,
+                  style: fontSizeSmall,
                 ),
               )),
         ),

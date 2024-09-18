@@ -56,7 +56,7 @@ class _ForecastPageState extends State<ForecastPage> {
                               SizedBox(width: 15),
                               Text(
                                 '7 Day Forecast',
-                                style: fontSize30,
+                                style: fontSizeLarge,
                               )
                             ],
                           ),

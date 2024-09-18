@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: Text(
                         value.cityTitle,
-                        style: fontSize36,
+                        style: fontSizeXLarge,
                       ),
                     ),
                     SizedBox(height: 10),

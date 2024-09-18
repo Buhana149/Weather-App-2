@@ -1,10 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app_2/pages/forecast_page.dart';
 import 'package:weather_app_2/services/weather_services.dart';
+import 'package:weather_app_2/text_styles/background_gradient.dart';
 import 'package:weather_app_2/text_styles/text_style.dart';
 import 'package:weather_app_2/ui_utilities/build_weather_details.dart';
 import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
@@ -103,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                     onTap: _showCitySelectionDialog,
                     child: Text(
                       _city,
-                      style: fontSize36,
+                      style: fontSizeXLarge,
                     ),
                   ),
                   SizedBox(height: 10),

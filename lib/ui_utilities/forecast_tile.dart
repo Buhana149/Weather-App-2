@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:weather_app_2/text_styles/background_gradient.dart';
 import 'package:weather_app_2/text_styles/text_style.dart';
 
 class ForecastTile extends StatelessWidget {
@@ -32,20 +33,20 @@ class ForecastTile extends StatelessWidget {
                 leading: Image.network(iconImage),
                 title: Text(
                   avgTemp,
-                  style: fontSize22,
+                  style: fontSizeMedium,
                 ),
                 subtitle: Text(
                   weatherCondition,
-                  style: fontSize16,
+                  style: fontSizeXSmall,
                 ),
                 trailing: Text(
                   maxMinTemp,
-                  style: fontSize18,
+                  style: fontSizeSmall,
                 ),
               )),
         ),
       ),
     );
-    ;
+    
   }
 }

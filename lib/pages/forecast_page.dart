@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app_2/services/weather_services.dart';
+import 'package:weather_app_2/text_styles/background_gradient.dart';
 import 'package:weather_app_2/text_styles/text_style.dart';
 import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
 import 'package:weather_app_2/ui_utilities/forecast_tile.dart';
@@ -64,7 +65,7 @@ class _ForecastPageState extends State<ForecastPage> {
                             SizedBox(width: 15),
                             Text(
                               '7 Day Forecast',
-                              style: fontSize30,
+                              style: fontSizeLarge,
                             )
                           ],
                         ),

@@ -8,6 +8,8 @@ import 'package:weather_app_2/ui_utilities/build_weather_details.dart';
 import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
 import 'package:weather_app_2/ui_utilities/forecast_button.dart';
 import 'package:weather_app_2/ui_utilities/home_weather_details.dart';
+import 'package:weather_app_2/ui_utilities/humidity_wind.dart';
+import 'package:weather_app_2/ui_utilities/sunrise_sunset.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,7 +25,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _fetchWeather();
   }
@@ -118,35 +119,16 @@ class _HomePageState extends State<HomePage> {
                         'Min: ${_currentWeather!['forecast']['forecastday'][0]['day']['mintemp_c'].round()}°C',
                   ),
                   SizedBox(height: 45),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      BuildWeatherDetails(
-                          label: 'Sunrise',
-                          icon: Icons.wb_sunny,
-                          value: _currentWeather!['forecast']['forecastday'][0]
-                              ['astro']['sunrise']),
-                      BuildWeatherDetails(
-                          label: 'Sunset',
-                          icon: Icons.brightness_3,
-                          value: _currentWeather!['forecast']['forecastday'][0]
-                              ['astro']['sunset']),
-                    ],
+                  SunriseSunsetIndicatiors(
+                    sunriseValue: _currentWeather!['forecast']['forecastday'][0]
+                        ['astro']['sunrise'],
+                    sunsetValue: _currentWeather!['forecast']['forecastday'][0]
+                        ['astro']['sunset'],
                   ),
                   const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      BuildWeatherDetails(
-                          label: 'Humidity',
-                          icon: Icons.opacity,
-                          value: _currentWeather!['current']['humidity']),
-                      BuildWeatherDetails(
-                          label: 'Wind (KPH)',
-                          icon: Icons.wind_power,
-                          value: _currentWeather!['current']['wind_kph']),
-                    ],
-                  ),
+                  HumidityWindIndicator(
+                      humidityValue: _currentWeather!['current']['humidity'],
+                      windValue: _currentWeather!['current']['wind_kph']),
                   const SizedBox(height: 20),
                   ForecastButton(
                       builder: (context) => ForecastPage(

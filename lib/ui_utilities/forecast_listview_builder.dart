@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class ForecastListviewBuilder extends StatelessWidget {
   final itemCount;
   final Widget? Function(BuildContext, int) itemBuilder;

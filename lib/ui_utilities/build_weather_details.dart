@@ -1,8 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app_2/text_styles/background_gradient.dart';
+import 'package:weather_app_2/text_styles/text_style.dart';
 
 class BuildWeatherDetails extends StatelessWidget {
   final String label;
@@ -39,21 +38,14 @@ class BuildWeatherDetails extends StatelessWidget {
                 ),
                 Text(
                   label,
-                  style: GoogleFonts.lato(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: fontSizeSmallBold,
                 ),
                 SizedBox(
                   height: 8,
                 ),
                 Text(
                   value is String ? value : value.toString(),
-                  style: GoogleFonts.lato(
-                    fontSize: 18,
-                    color: Colors.white,
-                  ),
+                  style: fontSizeSmall,
                 )
               ],
             ),

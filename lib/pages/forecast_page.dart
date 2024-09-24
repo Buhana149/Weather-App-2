@@ -72,7 +72,7 @@ class _ForecastPageState extends State<ForecastPage> {
                         ),
                       ),
                       ForecastListviewBuilder(
-                        itemCount: _forecast!.length,
+                        itemCount: _forecast?.length ?? 0,
                         itemBuilder: (context, index) {
                           final day = _forecast![index];
                           String iconUrl =

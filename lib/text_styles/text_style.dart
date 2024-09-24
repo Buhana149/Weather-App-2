@@ -24,4 +24,8 @@ final TextStyle fontSizeXSmall = GoogleFonts.lato(
   fontSize: 16,
   color: Colors.white70,
 );
-
+final TextStyle? fontSizeSmallBold = GoogleFonts.lato(
+  fontSize: 18,
+  color: Colors.white,
+  fontWeight: FontWeight.bold,
+);

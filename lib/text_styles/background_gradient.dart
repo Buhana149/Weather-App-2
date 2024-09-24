@@ -11,7 +11,6 @@ final BoxDecoration purpleGradient = BoxDecoration(
         Color.fromARGB(255, 151, 44, 170),
       ]),
 );
-
 final BoxDecoration forecastTileGradient = BoxDecoration(
   gradient: LinearGradient(
       begin: AlignmentDirectional.topStart,
@@ -21,6 +20,3 @@ final BoxDecoration forecastTileGradient = BoxDecoration(
         Color(0xFF1A2344).withOpacity(0.2),
       ]),
 );
-
-
-

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app_2/services/weather_services.dart';
-import 'package:weather_app_2/ui_utilities/city_selection_dialog.dart';
-import 'package:weather_app_2/ui_utilities/showCustomDialog.dart';
-
 class WeatherProvider extends ChangeNotifier {
   final WeatherServices _weatherServices = WeatherServices();
 
@@ -44,35 +41,5 @@ class WeatherProvider extends ChangeNotifier {
     } finally {
       notifyListeners();
     }
-  }
-
-  void showCitySelectionDialog(context, String cityTitle) {
-    showCustomDialog(
-        context: context,
-        dialogContent: CitySelectionDialog(
-          onSelected: (city) {
-            final selectedCity = city as Map<String, dynamic>?;
-            cityTitle = selectedCity?['name'] ?? 'Unknown City';
-            notifyListeners();
-          },
-          itemBuilder: (context, suggestion) {
-            final citySuggestion = suggestion as Map<String, dynamic>?;
-            return ListTile(
-              title: Text(citySuggestion?['name'] ?? 'Unknown City'),
-            );
-          },
-          suggestionsCallback: (pattern) async {
-            return await fetchCitySuggestionsProvider(pattern);
-          },
-          onPressedCancel: () {
-            Navigator.pop(context);
-            notifyListeners();
-          },
-          onPressedSubmit: () {
-            Navigator.pop(context);
-            fetchWeatherProvider(cityTitle);
-            notifyListeners();
-          },
-        ));
   }
 }

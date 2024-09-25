@@ -6,8 +6,10 @@ import 'package:weather_app_2/text_styles/background_gradient.dart';
 import 'package:weather_app_2/text_styles/text_style.dart';
 import 'package:weather_app_2/ui_utilities/build_weather_details.dart';
 import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
+import 'package:weather_app_2/ui_utilities/city_selection_dialog.dart';
 import 'package:weather_app_2/ui_utilities/forecast_button.dart';
 import 'package:weather_app_2/ui_utilities/home_weather_details.dart';
+import 'package:weather_app_2/ui_utilities/showCustomDialog.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -31,6 +33,34 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Consumer<WeatherProvider>(builder: (context, value, child) {
+      void showCitySelectionDialog() {
+        showCustomDialog(
+            context: context,
+            dialogContent: CitySelectionDialog(
+              onSelected: (city) {
+                final selectedCity = city as Map<String, dynamic>?;
+                cityTitle = selectedCity?['name'] ?? 'Unknown City';
+              },
+              itemBuilder: (context, suggestion) {
+                final citySuggestion = suggestion as Map<String, dynamic>?;
+                return ListTile(
+                  title: Text(citySuggestion?['name'] ?? 'Unknown City'),
+                );
+              },
+              suggestionsCallback: (pattern) async {
+                return await value.fetchCitySuggestionsProvider(pattern);
+              },
+              onPressedCancel: () {
+                Navigator.pop(context);
+              },
+              onPressedSubmit: () {
+                Navigator.pop(context);
+                value.fetchWeatherProvider(cityTitle);
+                
+              },
+            ));
+      }
+
       return Scaffold(
         body: value.currentWeather == null
             ? CircularIndicatorUi()
@@ -42,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 10),
                     InkWell(
                       onTap: () {
-                        value.showCitySelectionDialog(context, cityTitle);
+                        showCitySelectionDialog();
                       },
                       child: Text(
                         cityTitle,

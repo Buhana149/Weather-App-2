@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app_2/text_styles/background_gradient.dart';
 
 class CircularIndicatorUi extends StatelessWidget {
   const CircularIndicatorUi({super.key});
@@ -7,7 +6,16 @@ class CircularIndicatorUi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:purpleGradient,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+            Color(0xFF1A2344),
+            Color.fromARGB(255, 125, 32, 142),
+            Colors.purple,
+            Color.fromARGB(255, 151, 44, 170),
+          ])),
       child: Center(
         child: CircularProgressIndicator(
           color: Colors.white,

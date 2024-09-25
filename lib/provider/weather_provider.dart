@@ -6,7 +6,6 @@ import 'package:weather_app_2/ui_utilities/showCustomDialog.dart';
 class WeatherProvider extends ChangeNotifier {
   final WeatherServices _weatherServices = WeatherServices();
 
-  String cityTitle = 'London';
 
   Map<String, dynamic>? _currentWeather;
   Map<String, dynamic>? get currentWeather => _currentWeather;
@@ -14,7 +13,7 @@ class WeatherProvider extends ChangeNotifier {
   List<dynamic>? _forecast;
   List<dynamic>? get forecast => _forecast;
 
-  Future<void> fetchWeatherProvider() async {
+  Future<void> fetchWeatherProvider(String cityTitle) async {
     try {
       final weatherData = await _weatherServices.fetchCurrentWeather(cityTitle);
       _currentWeather = weatherData;
@@ -24,7 +23,7 @@ class WeatherProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> fetchForecastProvider() async {
+  Future<void> fetchForecastProvider(String cityTitle) async {
     try {
       final forecastData = await _weatherServices.fetch7DayForecast(cityTitle);
 
@@ -47,7 +46,7 @@ class WeatherProvider extends ChangeNotifier {
     }
   }
 
-  void showCitySelectionDialog(context) {
+  void showCitySelectionDialog(context, String cityTitle) {
     showCustomDialog(
         context: context,
         dialogContent: CitySelectionDialog(
@@ -71,7 +70,7 @@ class WeatherProvider extends ChangeNotifier {
           },
           onPressedSubmit: () {
             Navigator.pop(context);
-            fetchWeatherProvider();
+            fetchWeatherProvider(cityTitle);
             notifyListeners();
           },
         ));

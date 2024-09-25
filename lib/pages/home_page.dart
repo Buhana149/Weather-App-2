@@ -18,12 +18,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final WeatherProvider weatherProvider = WeatherProvider();
+  String cityTitle = 'London';
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await Provider.of<WeatherProvider>(context, listen: false)
-          .fetchWeatherProvider();
+          .fetchWeatherProvider(cityTitle);
     });
   }
 
@@ -41,10 +42,10 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 10),
                     InkWell(
                       onTap: () {
-                        value.showCitySelectionDialog(context);
+                        value.showCitySelectionDialog(context, cityTitle);
                       },
                       child: Text(
-                        value.cityTitle,
+                        cityTitle,
                         style: fontSizeXLarge,
                       ),
                     ),

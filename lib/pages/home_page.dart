@@ -51,6 +51,7 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 10),
                     HomeWeatherDetails(
                       networkImage:
+                      // avoid force unwrap
                           'http:${value.currentWeather!['current']['condition']['icon']}',
                       currentTemp:
                           '${value.currentWeather!['current']['temp_c'].round()}°C',
@@ -84,6 +85,7 @@ class _HomePageState extends State<HomePage> {
                         BuildWeatherDetails(
                             label: 'Humidity',
                             icon: Icons.opacity,
+                            // avoid force unwrap
                             value: value.currentWeather!['current']
                                 ['humidity']),
                         BuildWeatherDetails(

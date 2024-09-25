@@ -4,9 +4,12 @@ import 'package:weather_app_2/services/weather_services.dart';
 
 class WeatherProvider extends ChangeNotifier {
   final WeatherServices _weatherServices = WeatherServices();
+
   String cityTitle = 'London';
+
   Map<String, dynamic>? _currentWeather;
   Map<String, dynamic>? get currentWeather => _currentWeather;
+
   List<dynamic>? _forecast;
   List<dynamic>? get forecast => _forecast;
 
@@ -43,6 +46,8 @@ class WeatherProvider extends ChangeNotifier {
     }
   }
 
+  // this UI layer, move it into separate file and call it from UI
+  
   void showCitySelectionDialog(context) {
     showDialog(
       context: context,

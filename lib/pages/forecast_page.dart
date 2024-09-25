@@ -63,8 +63,10 @@ class _ForecastPageState extends State<ForecastPage> {
                         ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
+                            // avoid force unwrap
                             itemCount: value.forecast!.length,
                             itemBuilder: (context, index) {
+                              // avoid force unwrap
                               final day = value.forecast![index];
                               String iconUrl =
                                   'http:${day['day']['condition']['icon']}';

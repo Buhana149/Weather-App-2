@@ -20,7 +20,6 @@ class _HomePageState extends State<HomePage> {
   final WeatherProvider weatherProvider = WeatherProvider();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await Provider.of<WeatherProvider>(context, listen: false)

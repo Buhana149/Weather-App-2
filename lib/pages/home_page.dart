@@ -51,16 +51,15 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 10),
                     HomeWeatherDetails(
                       networkImage:
-                      // avoid force unwrap
-                          'http:${value.currentWeather!['current']['condition']['icon']}',
+                          'http:${value.currentWeather?['current']['condition']['icon']}',
                       currentTemp:
-                          '${value.currentWeather!['current']['temp_c'].round()}°C',
+                          '${value.currentWeather?['current']['temp_c'].round()}°C',
                       currentCondition:
-                          '${value.currentWeather!['current']['condition']['text']}',
+                          '${value.currentWeather?['current']['condition']['text']}',
                       maxTemp:
-                          'Max: ${value.currentWeather!['forecast']['forecastday'][0]['day']['maxtemp_c'].round()}°C',
+                          'Max: ${value.currentWeather?['forecast']['forecastday'][0]['day']['maxtemp_c'].round()}°C',
                       minTemp:
-                          'Min: ${value.currentWeather!['forecast']['forecastday'][0]['day']['mintemp_c'].round()}°C',
+                          'Min: ${value.currentWeather?['forecast']['forecastday'][0]['day']['mintemp_c'].round()}°C',
                     ),
                     SizedBox(height: 45),
                     Row(
@@ -85,13 +84,12 @@ class _HomePageState extends State<HomePage> {
                         BuildWeatherDetails(
                             label: 'Humidity',
                             icon: Icons.opacity,
-                            // avoid force unwrap
-                            value: value.currentWeather!['current']
+                            value: value.currentWeather?['current']
                                 ['humidity']),
                         BuildWeatherDetails(
                             label: 'Wind (KPH)',
                             icon: Icons.wind_power,
-                            value: value.currentWeather!['current']
+                            value: value.currentWeather?['current']
                                 ['wind_kph']),
                       ],
                     ),

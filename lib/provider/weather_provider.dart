@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:weather_app_2/services/weather_services.dart';
+import 'package:weather_app_2/ui_utilities/city_selection_dialog.dart';
 
 class WeatherProvider extends ChangeNotifier {
   final WeatherServices _weatherServices = WeatherServices();
@@ -46,51 +46,34 @@ class WeatherProvider extends ChangeNotifier {
     }
   }
 
-  // this UI layer, move it into separate file and call it from UI
-  
   void showCitySelectionDialog(context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Enter City Name'),
-          content: TypeAheadField(builder: (context, controller, focusNode) {
-            return TextField(
-              controller: controller,
-              focusNode: focusNode,
-              autofocus: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'City',
-              ),
-            );
-          }, itemBuilder: (context, suggestion) {
-            return ListTile(
-              title: Text(suggestion['name']),
-            );
-          }, onSelected: (city) {
-            cityTitle = city['name'];
+        return CitySelectionDialog(
+          onSelected: (city) {
+            final selectedCity = city as Map<String, dynamic>?;
+            cityTitle = selectedCity?['name'] ?? 'Unknown City';
             notifyListeners();
-          }, suggestionsCallback: (pattern) async {
+          },
+          itemBuilder: (context, suggestion) {
+            final citySuggestion = suggestion as Map<String, dynamic>?;
+            return ListTile(
+              title: Text(citySuggestion?['name'] ?? 'Unknown City'),
+            );
+          },
+          suggestionsCallback: (pattern) async {
             return await fetchCitySuggestionsProvider(pattern);
-          }),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-                notifyListeners();
-              },
-              child: Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-                fetchWeatherProvider();
-                notifyListeners();
-              },
-              child: Text('Submit'),
-            ),
-          ],
+          },
+          onPressedCancel: () {
+            Navigator.pop(context);
+            notifyListeners();
+          },
+          onPressedSubmit: () {
+            Navigator.pop(context);
+            fetchWeatherProvider();
+            notifyListeners();
+          },
         );
       },
     );

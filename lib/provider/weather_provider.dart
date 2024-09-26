@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app_2/services/weather_services.dart';
+import 'package:weather_app_2/ui_utilities/city_selection_dialog_method.dart';
+
 class WeatherProvider extends ChangeNotifier {
   final WeatherServices _weatherServices = WeatherServices();
-
-
+  String cityTitle = 'London';
   Map<String, dynamic>? _currentWeather;
   Map<String, dynamic>? get currentWeather => _currentWeather;
 
@@ -38,6 +39,22 @@ class WeatherProvider extends ChangeNotifier {
     } catch (e) {
       print(e);
       return null;
+    } finally {
+      notifyListeners();
+    }
+  }
+
+  Future<void> showCitySelection(BuildContext context, WeatherProvider value, String cityTitle) async {
+    try {
+      showCitySelectionDialog(context, (city) {
+
+        // cityTitle = city['name'];
+        fetchWeatherProvider(cityTitle);
+      },
+      value,
+      cityTitle);
+    } catch (e) {
+      print(e);
     } finally {
       notifyListeners();
     }

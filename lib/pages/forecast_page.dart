@@ -15,14 +15,14 @@ class ForecastPage extends StatefulWidget {
 
 class _ForecastPageState extends State<ForecastPage> {
   final WeatherProvider weatherProvider = WeatherProvider();
-  String cityTitle = 'London';
+
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await Provider.of<WeatherProvider>(context, listen: false)
-          .fetchForecastProvider(cityTitle);
+          .fetchForecastProvider(weatherProvider.cityTitle);
     });
   }
 

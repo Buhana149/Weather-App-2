@@ -7,6 +7,7 @@ import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
 import 'package:weather_app_2/ui_utilities/forecast_tile.dart';
 
 class ForecastPage extends StatefulWidget {
+
   const ForecastPage({super.key});
 
   @override
@@ -14,15 +15,16 @@ class ForecastPage extends StatefulWidget {
 }
 
 class _ForecastPageState extends State<ForecastPage> {
+  
   final WeatherProvider weatherProvider = WeatherProvider();
-
+  
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await Provider.of<WeatherProvider>(context, listen: false)
-          .fetchForecastProvider(weatherProvider.cityTitle);
+          .fetchForecastProvider();
     });
   }
 

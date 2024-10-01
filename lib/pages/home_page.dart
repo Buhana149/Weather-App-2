@@ -6,6 +6,7 @@ import 'package:weather_app_2/text_styles/background_gradient.dart';
 import 'package:weather_app_2/text_styles/text_style.dart';
 import 'package:weather_app_2/ui_utilities/build_weather_details.dart';
 import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
+import 'package:weather_app_2/ui_utilities/city_selection_dialog_method.dart';
 import 'package:weather_app_2/ui_utilities/forecast_button.dart';
 import 'package:weather_app_2/ui_utilities/home_weather_details.dart';
 
@@ -17,13 +18,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
   final WeatherProvider weatherProvider = WeatherProvider();
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await Provider.of<WeatherProvider>(context, listen: false)
-          .fetchWeatherProvider(weatherProvider.cityTitle);
+          .fetchWeatherProvider();
     });
   }
 
@@ -41,11 +44,17 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 10),
                     InkWell(
                       onTap: () {
-                        value.showCitySelection(
-                            context, value, value.cityTitle);
+                        void Function(String) onSelected = (selectedValue) { 
+                          value.setCityTitle(selectedValue);
+                        };
+                        void Function() onPress = () {
+                          value.fetchWeatherProvider();
+                        };
+                        
+                        showCitySelectionDialog(context, onSelected, value, value.cityTitle!, onPress);
                       },
                       child: Text(
-                        value.cityTitle,
+                        value.cityTitle!,
                         style: fontSizeXLarge,
                       ),
                     ),

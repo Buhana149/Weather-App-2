@@ -5,17 +5,22 @@ import 'package:weather_app_2/ui_utilities/showCustomDialog.dart';
 
 void showCitySelectionDialog(
   BuildContext context,
-  Function(String) onSelected,
+  void Function(String) onSelected,
   WeatherProvider value,
- String cityTitle,
+  String cityTitle,
+  final void Function()? onPressedSubmit,
 ) {
   showCustomDialog(
       context: context,
       dialogContent: CitySelectionDialog(
-        onSelected: (city) {
+        onSelected: (locationMap) {
+          if (locationMap is Map<String, dynamic>) {
+            cityTitle = locationMap["name"] as String;
+            onSelected(cityTitle);
+          } else {
+            print("error location name cannot be extracted from locationMap");
+          }
           
-          cityTitle = city as String;
-          onSelected(cityTitle);
         },
         itemBuilder: (context, suggestion) {
           final citySuggestion = suggestion as Map<String, dynamic>?;
@@ -31,7 +36,7 @@ void showCitySelectionDialog(
         },
         onPressedSubmit: () {
           Navigator.pop(context);
-          value.fetchWeatherProvider(cityTitle);
+          onPressedSubmit!();
         },
       ));
 }

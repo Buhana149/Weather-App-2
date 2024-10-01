@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeWeatherDetails extends StatelessWidget {
+
   final String networkImage;
   final String currentTemp;
   final String currentCondition;
   final String maxTemp;
   final String minTemp;
+  
   const HomeWeatherDetails({
     super.key,
     required this.networkImage,

@@ -6,6 +6,7 @@ import 'package:weather_app_2/text_styles/background_gradient.dart';
 import 'package:weather_app_2/text_styles/text_style.dart';
 import 'package:weather_app_2/ui_utilities/build_weather_details.dart';
 import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
+import 'package:weather_app_2/ui_utilities/city_selection_dialog_method.dart';
 import 'package:weather_app_2/ui_utilities/forecast_button.dart';
 import 'package:weather_app_2/ui_utilities/home_weather_details.dart';
 
@@ -17,7 +18,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
   final WeatherProvider weatherProvider = WeatherProvider();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -42,25 +45,32 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 10),
                     InkWell(
                       onTap: () {
-                        value.showCitySelectionDialog(context);
+                        void Function(String) onSelected = (selectedValue) { 
+                          value.setCityTitle(selectedValue);
+                        };
+                        void Function() onPress = () {
+                          value.fetchWeatherProvider();
+                        };
+                        
+                        showCitySelectionDialog(context, onSelected, value, value.cityTitle!, onPress);
                       },
                       child: Text(
-                        value.cityTitle,
+                        value.cityTitle!,
                         style: fontSizeXLarge,
                       ),
                     ),
                     SizedBox(height: 10),
                     HomeWeatherDetails(
                       networkImage:
-                          'http:${value.currentWeather!['current']['condition']['icon']}',
+                          'http:${value.currentWeather?['current']['condition']['icon']}',
                       currentTemp:
-                          '${value.currentWeather!['current']['temp_c'].round()}°C',
+                          '${value.currentWeather?['current']['temp_c'].round()}°C',
                       currentCondition:
-                          '${value.currentWeather!['current']['condition']['text']}',
+                          '${value.currentWeather?['current']['condition']['text']}',
                       maxTemp:
-                          'Max: ${value.currentWeather!['forecast']['forecastday'][0]['day']['maxtemp_c'].round()}°C',
+                          'Max: ${value.currentWeather?['forecast']['forecastday'][0]['day']['maxtemp_c'].round()}°C',
                       minTemp:
-                          'Min: ${value.currentWeather!['forecast']['forecastday'][0]['day']['mintemp_c'].round()}°C',
+                          'Min: ${value.currentWeather?['forecast']['forecastday'][0]['day']['mintemp_c'].round()}°C',
                     ),
                     SizedBox(height: 45),
                     Row(
@@ -85,12 +95,12 @@ class _HomePageState extends State<HomePage> {
                         BuildWeatherDetails(
                             label: 'Humidity',
                             icon: Icons.opacity,
-                            value: value.currentWeather!['current']
+                            value: value.currentWeather?['current']
                                 ['humidity']),
                         BuildWeatherDetails(
                             label: 'Wind (KPH)',
                             icon: Icons.wind_power,
-                            value: value.currentWeather!['current']
+                            value: value.currentWeather?['current']
                                 ['wind_kph']),
                       ],
                     ),

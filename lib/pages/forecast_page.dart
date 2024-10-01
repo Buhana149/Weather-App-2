@@ -7,6 +7,7 @@ import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
 import 'package:weather_app_2/ui_utilities/forecast_tile.dart';
 
 class ForecastPage extends StatefulWidget {
+
   const ForecastPage({super.key});
 
   @override
@@ -14,7 +15,9 @@ class ForecastPage extends StatefulWidget {
 }
 
 class _ForecastPageState extends State<ForecastPage> {
+  
   final WeatherProvider weatherProvider = WeatherProvider();
+  
 
   @override
   void initState() {
@@ -64,9 +67,9 @@ class _ForecastPageState extends State<ForecastPage> {
                         ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: value.forecast!.length,
+                            itemCount: value.forecast?.length ?? 0,
                             itemBuilder: (context, index) {
-                              final day = value.forecast![index];
+                              final day = value.forecast?[index] ?? 0;
                               String iconUrl =
                                   'http:${day['day']['condition']['icon']}';
                               return ForecastTile(

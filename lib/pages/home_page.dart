@@ -78,13 +78,11 @@ class _HomePageState extends State<HomePage> {
                         BuildWeatherDetails(
                             label: 'Sunrise',
                             icon: Icons.wb_sunny,
-                            value: value.currentWeather!['forecast']
-                                ['forecastday'][0]['astro']['sunrise']),
+                            value: value.currentWeather!['forecast']['forecastday'][0]['astro']['sunrise']),
                         BuildWeatherDetails(
                             label: 'Sunset',
                             icon: Icons.brightness_3,
-                            value: value.currentWeather!['forecast']
-                                ['forecastday'][0]['astro']['sunset']),
+                            value: value.currentWeather!['forecast']['forecastday'][0]['astro']['sunset']),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -94,13 +92,11 @@ class _HomePageState extends State<HomePage> {
                         BuildWeatherDetails(
                             label: 'Humidity',
                             icon: Icons.opacity,
-                            value: value.currentWeather?['current']
-                                ['humidity']),
+                            value: value.currentWeather?['current']['humidity']),
                         BuildWeatherDetails(
                             label: 'Wind (KPH)',
                             icon: Icons.wind_power,
-                            value: value.currentWeather?['current']
-                                ['wind_kph']),
+                            value: value.currentWeather?['current']['wind_kph']),
                       ],
                     ),
                     const SizedBox(height: 20),

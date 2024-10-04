@@ -7,16 +7,15 @@ class ForecastAstro {
     required this.sunset,
   });
 
-      factory ForecastAstro.fromJson(Map<String, dynamic> json) {
+  factory ForecastAstro.fromJson(Map<String, dynamic> json) {
     return ForecastAstro(
       sunrise: json['sunrise'],
       sunset: json['sunset'],
-      
     );
   }
 
   Map<String, dynamic> toJson() => {
         'sunrise': sunrise,
-        'sunset' : sunset,
+        'sunset': sunset,
       };
 }

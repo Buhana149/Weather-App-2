@@ -16,14 +16,12 @@ class Forecast {
       date: json['date'],
       day: json['day'],
       astro: json['astro'],
-
     );
   }
 
   Map<String, dynamic> toJson() => {
         'date': date,
-        'day' : day,
+        'day': day,
         'astro': astro,
- 
       };
 }

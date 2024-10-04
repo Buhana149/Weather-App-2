@@ -18,14 +18,12 @@ class WeatherGeneral {
       location: json['location'],
       currentWeather: json['currentWeather'],
       forecast: json['forecast'],
-
     );
   }
 
   Map<String, dynamic> toJson() => {
         'location': location,
-        'currentWeather' : currentWeather,
+        'currentWeather': currentWeather,
         'forecast': forecast,
- 
       };
 }

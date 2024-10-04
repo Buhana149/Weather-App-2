@@ -23,8 +23,8 @@ class ForecastDay {
 
   Map<String, dynamic> toJson() => {
         'maxtemp_c': maxtemp_c,
-        'mintemp_c' : mintemp_c,
+        'mintemp_c': mintemp_c,
         'condition': condition,
-        'avgtemp_c' : avgtemp_c,
+        'avgtemp_c': avgtemp_c,
       };
 }

@@ -12,7 +12,7 @@ class CurrentWeather {
     required this.wind_kph,
     required this.humidity,
   });
-   factory CurrentWeather.fromJson(Map<String, dynamic> json) {
+  factory CurrentWeather.fromJson(Map<String, dynamic> json) {
     return CurrentWeather(
       temp_c: json['temp_c'],
       condition: json['condition'],
@@ -23,8 +23,8 @@ class CurrentWeather {
 
   Map<String, dynamic> toJson() => {
         'temp_c': temp_c,
-        'condition' : condition,
+        'condition': condition,
         'wind_kph': wind_kph,
-        'humidity' : humidity,
+        'humidity': humidity,
       };
 }

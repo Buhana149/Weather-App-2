@@ -16,6 +16,6 @@ class CurrentCondition {
 
   Map<String, dynamic> toJson() => {
         'text': text,
-        'icon' : icon,
+        'icon': icon,
       };
 }

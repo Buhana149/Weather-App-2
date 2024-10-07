@@ -20,7 +20,7 @@ WeatherGeneral _$WeatherGeneralFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WeatherGeneral {
-  String get location => throw _privateConstructorUsedError;
+  LocationName get location => throw _privateConstructorUsedError;
   CurrentWeather get current => throw _privateConstructorUsedError;
   ForecastList get forecast => throw _privateConstructorUsedError;
 
@@ -40,8 +40,10 @@ abstract class $WeatherGeneralCopyWith<$Res> {
           WeatherGeneral value, $Res Function(WeatherGeneral) then) =
       _$WeatherGeneralCopyWithImpl<$Res, WeatherGeneral>;
   @useResult
-  $Res call({String location, CurrentWeather current, ForecastList forecast});
+  $Res call(
+      {LocationName location, CurrentWeather current, ForecastList forecast});
 
+  $LocationNameCopyWith<$Res> get location;
   $CurrentWeatherCopyWith<$Res> get current;
   $ForecastListCopyWith<$Res> get forecast;
 }
@@ -69,7 +71,7 @@ class _$WeatherGeneralCopyWithImpl<$Res, $Val extends WeatherGeneral>
       location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as String,
+              as LocationName,
       current: null == current
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
@@ -79,6 +81,16 @@ class _$WeatherGeneralCopyWithImpl<$Res, $Val extends WeatherGeneral>
           : forecast // ignore: cast_nullable_to_non_nullable
               as ForecastList,
     ) as $Val);
+  }
+
+  /// Create a copy of WeatherGeneral
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationNameCopyWith<$Res> get location {
+    return $LocationNameCopyWith<$Res>(_value.location, (value) {
+      return _then(_value.copyWith(location: value) as $Val);
+    });
   }
 
   /// Create a copy of WeatherGeneral
@@ -110,8 +122,11 @@ abstract class _$$WeatherGeneralImplCopyWith<$Res>
       __$$WeatherGeneralImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String location, CurrentWeather current, ForecastList forecast});
+  $Res call(
+      {LocationName location, CurrentWeather current, ForecastList forecast});
 
+  @override
+  $LocationNameCopyWith<$Res> get location;
   @override
   $CurrentWeatherCopyWith<$Res> get current;
   @override
@@ -139,7 +154,7 @@ class __$$WeatherGeneralImplCopyWithImpl<$Res>
       location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as String,
+              as LocationName,
       current: null == current
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
@@ -162,7 +177,7 @@ class _$WeatherGeneralImpl implements _WeatherGeneral {
       _$$WeatherGeneralImplFromJson(json);
 
   @override
-  final String location;
+  final LocationName location;
   @override
   final CurrentWeather current;
   @override
@@ -208,7 +223,7 @@ class _$WeatherGeneralImpl implements _WeatherGeneral {
 
 abstract class _WeatherGeneral implements WeatherGeneral {
   const factory _WeatherGeneral(
-      {required final String location,
+      {required final LocationName location,
       required final CurrentWeather current,
       required final ForecastList forecast}) = _$WeatherGeneralImpl;
 
@@ -216,7 +231,7 @@ abstract class _WeatherGeneral implements WeatherGeneral {
       _$WeatherGeneralImpl.fromJson;
 
   @override
-  String get location;
+  LocationName get location;
   @override
   CurrentWeather get current;
   @override

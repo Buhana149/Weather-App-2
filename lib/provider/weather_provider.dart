@@ -32,7 +32,7 @@ class WeatherProvider extends ChangeNotifier {
   Future<void> fetchForecastProvider() async {
     try {
       final forecastData = await _weatherServices.fetch7DayForecast(cityTitle ?? 'London');
-      _forecast = forecastData['forecast']['forecastday'];
+      _forecast = forecastData.location.name as List;
       notifyListeners();
     } catch (e) {
       print(e);

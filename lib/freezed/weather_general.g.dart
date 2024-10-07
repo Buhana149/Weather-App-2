@@ -8,7 +8,7 @@ part of 'weather_general.dart';
 
 _$WeatherGeneralImpl _$$WeatherGeneralImplFromJson(Map<String, dynamic> json) =>
     _$WeatherGeneralImpl(
-      location: json['location'] as String,
+      location: LocationName.fromJson(json['location'] as Map<String, dynamic>),
       current: CurrentWeather.fromJson(json['current'] as Map<String, dynamic>),
       forecast: ForecastList.fromJson(json['forecast'] as Map<String, dynamic>),
     );

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:weather_app_2/freezed/weather_general.dart';
 
@@ -30,7 +29,7 @@ class WeatherServices {
       throw Exception('Failed to load forecast data');
   }
 
-  Future<List<dynamic>?> fetchCitySuggestions(String query) async {
+  Future<List<WeatherGeneral>?> fetchCitySuggestions(String query) async {
     final url = '$searchBaseUrl?key=$apiKey&q=$query';
     final response = await http.get(Uri.parse(url));
 

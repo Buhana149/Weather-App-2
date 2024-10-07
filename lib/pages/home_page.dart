@@ -61,11 +61,11 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 10),
                     HomeWeatherDetails(
                       networkImage:
-                          'http:${value.currentWeather?['current']['condition']['icon']}',
+                          'http:${value.currentWeather?.current.condition.icon}',
                       currentTemp:
-                          '${value.currentWeather?['current']['temp_c'].round()}°C',
+                          '${value.currentWeather?.current.temp_c}°C',
                       currentCondition:
-                          '${value.currentWeather?['current']['condition']['text']}',
+                          '${value.currentWeather?.current.condition.text}',
                       maxTemp:
                           'Max: ${value.currentWeather?['forecast']['forecastday'][0]['day']['maxtemp_c'].round()}°C',
                       minTemp:
@@ -92,11 +92,11 @@ class _HomePageState extends State<HomePage> {
                         BuildWeatherDetails(
                             label: 'Humidity',
                             icon: Icons.opacity,
-                            value: value.currentWeather?['current']['humidity']),
+                            value: value.currentWeather?.current.humidity),
                         BuildWeatherDetails(
                             label: 'Wind (KPH)',
                             icon: Icons.wind_power,
-                            value: value.currentWeather?['current']['wind_kph']),
+                            value: value.currentWeather?.current.wind_kph),
                       ],
                     ),
                     const SizedBox(height: 20),

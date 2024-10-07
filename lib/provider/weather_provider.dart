@@ -18,27 +18,28 @@ class WeatherProvider extends ChangeNotifier {
   void setCityTitle(String cityTitle) {
     _cityTitle = cityTitle;
     if (_cityTitle != null && _cityTitle!.isNotEmpty) {
-    fetchWeatherProvider();
-  } else {
-    print('Invalid city title');
-  }
+      fetchWeatherProvider();
+    } else {
+      print('Invalid city title');
+    }
   }
 
-Future<void> fetchWeatherProvider() async {
-  try {
-    final weatherData = await _weatherServices.fetchCurrentWeather(cityTitle!);
-      _currentWeather = WeatherGeneral.fromJson(weatherData);
+  Future<void> fetchWeatherProvider() async {
+    try {
+      final weatherData =
+          await _weatherServices.fetchCurrentWeather(cityTitle!);
+      _currentWeather = weatherData;
       notifyListeners();
-  } catch (e) {
-    print('Error is $e from fetchWeatherProvider');
+    } catch (e) {
+      print('Error is $e from fetchWeatherProvider');
+    }
   }
-}
 
   Future<void> fetchForecastProvider() async {
     try {
       final forecastData =
           await _weatherServices.fetch7DayForecast(cityTitle ?? 'London');
-      _forecast = forecastData.forecast.mainForecastday.forecastList;
+      _forecast = forecastData.forecastList;
       notifyListeners();
     } catch (e) {
       print('Error is $e from fetchForecastProvider');

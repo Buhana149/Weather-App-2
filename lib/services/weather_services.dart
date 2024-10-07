@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:weather_app_2/freezed/forecast_list.dart';
 import 'package:weather_app_2/freezed/weather_general.dart';
 
 class WeatherServices {
@@ -18,13 +19,13 @@ class WeatherServices {
       throw Exception('Failed to load weather data');
   }
 
-  Future<WeatherGeneral> fetch7DayForecast(String city) async {
+  Future<ForecastList> fetch7DayForecast(String city) async {
     final url = '$forecastBaseUrl?key=$apiKey&q=$city&days=7&aqi=no&alerts=no';
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
       final jsonBody = json.decode(response.body);
-      return WeatherGeneral.fromJson(jsonBody);
+      return ForecastList.fromJson(jsonBody);
     } else
       throw Exception('Failed to load forecast data');
   }

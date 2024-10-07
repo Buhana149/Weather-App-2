@@ -21,7 +21,7 @@ class WeatherProvider extends ChangeNotifier {
 
   Future<void> fetchWeatherProvider() async {
     try {
-      final weatherData = await _weatherServices.fetchCurrentWeather(cityTitle!);
+      final weatherData = await _weatherServices.fetchCurrentWeather(cityTitle!) as Map<String, dynamic>;
       _currentWeather = weatherData;
       notifyListeners();
     } catch (e) {

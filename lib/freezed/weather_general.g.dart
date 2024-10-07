@@ -10,7 +10,7 @@ _$WeatherGeneralImpl _$$WeatherGeneralImplFromJson(Map<String, dynamic> json) =>
     _$WeatherGeneralImpl(
       location: json['location'] as String,
       current: CurrentWeather.fromJson(json['current'] as Map<String, dynamic>),
-      forecast: Forecast.fromJson(json['forecast'] as Map<String, dynamic>),
+      forecast: ForecastList.fromJson(json['forecast'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$WeatherGeneralImplToJson(

@@ -22,7 +22,7 @@ WeatherGeneral _$WeatherGeneralFromJson(Map<String, dynamic> json) {
 mixin _$WeatherGeneral {
   LocationName get location => throw _privateConstructorUsedError;
   CurrentWeather get current => throw _privateConstructorUsedError;
-  ForecastList get forecast => throw _privateConstructorUsedError;
+  MainForecastday get forecast => throw _privateConstructorUsedError;
 
   /// Serializes this WeatherGeneral to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,11 +41,13 @@ abstract class $WeatherGeneralCopyWith<$Res> {
       _$WeatherGeneralCopyWithImpl<$Res, WeatherGeneral>;
   @useResult
   $Res call(
-      {LocationName location, CurrentWeather current, ForecastList forecast});
+      {LocationName location,
+      CurrentWeather current,
+      MainForecastday forecast});
 
   $LocationNameCopyWith<$Res> get location;
   $CurrentWeatherCopyWith<$Res> get current;
-  $ForecastListCopyWith<$Res> get forecast;
+  $MainForecastdayCopyWith<$Res> get forecast;
 }
 
 /// @nodoc
@@ -79,7 +81,7 @@ class _$WeatherGeneralCopyWithImpl<$Res, $Val extends WeatherGeneral>
       forecast: null == forecast
           ? _value.forecast
           : forecast // ignore: cast_nullable_to_non_nullable
-              as ForecastList,
+              as MainForecastday,
     ) as $Val);
   }
 
@@ -107,8 +109,8 @@ class _$WeatherGeneralCopyWithImpl<$Res, $Val extends WeatherGeneral>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ForecastListCopyWith<$Res> get forecast {
-    return $ForecastListCopyWith<$Res>(_value.forecast, (value) {
+  $MainForecastdayCopyWith<$Res> get forecast {
+    return $MainForecastdayCopyWith<$Res>(_value.forecast, (value) {
       return _then(_value.copyWith(forecast: value) as $Val);
     });
   }
@@ -123,14 +125,16 @@ abstract class _$$WeatherGeneralImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {LocationName location, CurrentWeather current, ForecastList forecast});
+      {LocationName location,
+      CurrentWeather current,
+      MainForecastday forecast});
 
   @override
   $LocationNameCopyWith<$Res> get location;
   @override
   $CurrentWeatherCopyWith<$Res> get current;
   @override
-  $ForecastListCopyWith<$Res> get forecast;
+  $MainForecastdayCopyWith<$Res> get forecast;
 }
 
 /// @nodoc
@@ -162,7 +166,7 @@ class __$$WeatherGeneralImplCopyWithImpl<$Res>
       forecast: null == forecast
           ? _value.forecast
           : forecast // ignore: cast_nullable_to_non_nullable
-              as ForecastList,
+              as MainForecastday,
     ));
   }
 }
@@ -181,7 +185,7 @@ class _$WeatherGeneralImpl implements _WeatherGeneral {
   @override
   final CurrentWeather current;
   @override
-  final ForecastList forecast;
+  final MainForecastday forecast;
 
   @override
   String toString() {
@@ -225,7 +229,7 @@ abstract class _WeatherGeneral implements WeatherGeneral {
   const factory _WeatherGeneral(
       {required final LocationName location,
       required final CurrentWeather current,
-      required final ForecastList forecast}) = _$WeatherGeneralImpl;
+      required final MainForecastday forecast}) = _$WeatherGeneralImpl;
 
   factory _WeatherGeneral.fromJson(Map<String, dynamic> json) =
       _$WeatherGeneralImpl.fromJson;
@@ -235,7 +239,7 @@ abstract class _WeatherGeneral implements WeatherGeneral {
   @override
   CurrentWeather get current;
   @override
-  ForecastList get forecast;
+  MainForecastday get forecast;
 
   /// Create a copy of WeatherGeneral
   /// with the given fields replaced by the non-null parameter values.

@@ -7,10 +7,10 @@ part 'current_weather.g.dart';
 @freezed
 class CurrentWeather with _$CurrentWeather {
   const factory CurrentWeather({
-    required String temp_c,
+    required double temp_c,
     required CurrentCondition condition,
-    required String wind_kph,
-    required String humidity,
+    required double wind_kph,
+    required double humidity,
   }) = _CurrentWeather;
 
   factory CurrentWeather.fromJson(Map<String, dynamic> json) =>

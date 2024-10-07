@@ -67,9 +67,9 @@ class _HomePageState extends State<HomePage> {
                       currentCondition:
                           '${value.currentWeather?.current.condition.text}',
                       maxTemp:
-                          'Max: ${value.currentWeather?.forecast.forecastList[0].day.maxtemp_c}°C',
+                          'Max: ${value.currentWeather?.forecast.mainForecastday.forecastList[0].day.maxtemp_c}°C',
                       minTemp:
-                          'Min: ${value.currentWeather?.forecast.forecastList[0].day.mintemp_c}°C',
+                          'Min: ${value.currentWeather?.forecast.mainForecastday.forecastList[0].day.mintemp_c}°C',
                     ),
                     SizedBox(height: 45),
                     Row(
@@ -78,11 +78,11 @@ class _HomePageState extends State<HomePage> {
                         BuildWeatherDetails(
                             label: 'Sunrise',
                             icon: Icons.wb_sunny,
-                            value: value.currentWeather!.forecast.forecastList[0].astro.sunrise),
+                            value: value.currentWeather!.forecast.mainForecastday.forecastList[0].astro.sunrise),
                         BuildWeatherDetails(
                             label: 'Sunset',
                             icon: Icons.brightness_3,
-                            value: value.currentWeather!.forecast.forecastList[0].astro.sunset),
+                            value: value.currentWeather!.forecast.mainForecastday.forecastList[0].astro.sunset),
                       ],
                     ),
                     const SizedBox(height: 20),

@@ -7,10 +7,10 @@ part 'forecast_day.g.dart';
 @freezed
 class ForecastDay with _$ForecastDay {
   const factory ForecastDay({
-    required String maxtemp_c,
-    required String mintemp_c,
+    required double maxtemp_c,
+    required double mintemp_c,
+    required double avgtemp_c,
     required ForecastCondition condition,
-    required String avgtemp_c,
   }) = _ForecastDay;
 
   factory ForecastDay.fromJson(Map<String, dynamic> json) =>

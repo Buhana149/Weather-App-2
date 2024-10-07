@@ -8,11 +8,11 @@ part of 'current_weather.dart';
 
 _$CurrentWeatherImpl _$$CurrentWeatherImplFromJson(Map<String, dynamic> json) =>
     _$CurrentWeatherImpl(
-      temp_c: json['temp_c'] as String,
+      temp_c: (json['temp_c'] as num).toDouble(),
       condition:
           CurrentCondition.fromJson(json['condition'] as Map<String, dynamic>),
-      wind_kph: json['wind_kph'] as String,
-      humidity: json['humidity'] as String,
+      wind_kph: (json['wind_kph'] as num).toDouble(),
+      humidity: (json['humidity'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$CurrentWeatherImplToJson(

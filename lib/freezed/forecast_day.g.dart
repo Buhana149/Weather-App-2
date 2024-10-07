@@ -8,11 +8,11 @@ part of 'forecast_day.dart';
 
 _$ForecastDayImpl _$$ForecastDayImplFromJson(Map<String, dynamic> json) =>
     _$ForecastDayImpl(
-      maxtemp_c: json['maxtemp_c'] as String,
-      mintemp_c: json['mintemp_c'] as String,
+      maxtemp_c: (json['maxtemp_c'] as num).toDouble(),
+      mintemp_c: (json['mintemp_c'] as num).toDouble(),
       condition:
           ForecastCondition.fromJson(json['condition'] as Map<String, dynamic>),
-      avgtemp_c: json['avgtemp_c'] as String,
+      avgtemp_c: (json['avgtemp_c'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$ForecastDayImplToJson(_$ForecastDayImpl instance) =>

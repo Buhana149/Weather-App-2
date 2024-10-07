@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app_2/freezed/forecast_list.dart';
+import 'package:weather_app_2/freezed/forecast.dart';
 import 'package:weather_app_2/freezed/weather_general.dart';
 import 'package:weather_app_2/services/weather_services.dart';
 
@@ -12,33 +12,36 @@ class WeatherProvider extends ChangeNotifier {
   String? _cityTitle = 'London';
   String? get cityTitle => _cityTitle;
 
-  List<WeatherGeneral>? _forecast;
-  List<WeatherGeneral>? get forecast => _forecast;
+  List<Forecast>? _forecast;
+  List<Forecast>? get forecast => _forecast;
 
   void setCityTitle(String cityTitle) {
     _cityTitle = cityTitle;
+    if (_cityTitle != null && _cityTitle!.isNotEmpty) {
     fetchWeatherProvider();
+  } else {
+    print('Invalid city title');
+  }
   }
 
-  Future<void> fetchWeatherProvider() async {
-    try {
-      final weatherData =
-          await _weatherServices.fetchCurrentWeather(cityTitle!);
-      _currentWeather = weatherData;
+Future<void> fetchWeatherProvider() async {
+  try {
+    final weatherData = await _weatherServices.fetchCurrentWeather(cityTitle!);
+      _currentWeather = WeatherGeneral.fromJson(weatherData);
       notifyListeners();
-    } catch (e) {
-      print(e);
-    }
+  } catch (e) {
+    print('Error is $e from fetchWeatherProvider');
   }
+}
 
   Future<void> fetchForecastProvider() async {
     try {
       final forecastData =
           await _weatherServices.fetch7DayForecast(cityTitle ?? 'London');
-      _forecast = forecastData.location.name as List<WeatherGeneral>;
+      _forecast = forecastData.forecast.mainForecastday.forecastList;
       notifyListeners();
     } catch (e) {
-      print(e);
+      print('Error is $e from fetchForecastProvider');
     }
   }
 
@@ -47,7 +50,7 @@ class WeatherProvider extends ChangeNotifier {
       final citySuggestion = _weatherServices.fetchCitySuggestions(pattern);
       return citySuggestion;
     } catch (e) {
-      print(e);
+      print('Error is $e from fetchCitySuggestionsProvider');
       return null;
     } finally {
       notifyListeners();

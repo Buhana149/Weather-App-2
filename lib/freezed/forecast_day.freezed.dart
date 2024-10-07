@@ -20,10 +20,10 @@ ForecastDay _$ForecastDayFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ForecastDay {
-  String get maxtemp_c => throw _privateConstructorUsedError;
-  String get mintemp_c => throw _privateConstructorUsedError;
+  double get maxtemp_c => throw _privateConstructorUsedError;
+  double get mintemp_c => throw _privateConstructorUsedError;
   ForecastCondition get condition => throw _privateConstructorUsedError;
-  String get avgtemp_c => throw _privateConstructorUsedError;
+  double get avgtemp_c => throw _privateConstructorUsedError;
 
   /// Serializes this ForecastDay to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +42,10 @@ abstract class $ForecastDayCopyWith<$Res> {
       _$ForecastDayCopyWithImpl<$Res, ForecastDay>;
   @useResult
   $Res call(
-      {String maxtemp_c,
-      String mintemp_c,
+      {double maxtemp_c,
+      double mintemp_c,
       ForecastCondition condition,
-      String avgtemp_c});
+      double avgtemp_c});
 
   $ForecastConditionCopyWith<$Res> get condition;
 }
@@ -74,11 +74,11 @@ class _$ForecastDayCopyWithImpl<$Res, $Val extends ForecastDay>
       maxtemp_c: null == maxtemp_c
           ? _value.maxtemp_c
           : maxtemp_c // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       mintemp_c: null == mintemp_c
           ? _value.mintemp_c
           : mintemp_c // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       condition: null == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -86,7 +86,7 @@ class _$ForecastDayCopyWithImpl<$Res, $Val extends ForecastDay>
       avgtemp_c: null == avgtemp_c
           ? _value.avgtemp_c
           : avgtemp_c // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
     ) as $Val);
   }
 
@@ -110,10 +110,10 @@ abstract class _$$ForecastDayImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String maxtemp_c,
-      String mintemp_c,
+      {double maxtemp_c,
+      double mintemp_c,
       ForecastCondition condition,
-      String avgtemp_c});
+      double avgtemp_c});
 
   @override
   $ForecastConditionCopyWith<$Res> get condition;
@@ -141,11 +141,11 @@ class __$$ForecastDayImplCopyWithImpl<$Res>
       maxtemp_c: null == maxtemp_c
           ? _value.maxtemp_c
           : maxtemp_c // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       mintemp_c: null == mintemp_c
           ? _value.mintemp_c
           : mintemp_c // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       condition: null == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -153,7 +153,7 @@ class __$$ForecastDayImplCopyWithImpl<$Res>
       avgtemp_c: null == avgtemp_c
           ? _value.avgtemp_c
           : avgtemp_c // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
     ));
   }
 }
@@ -171,13 +171,13 @@ class _$ForecastDayImpl implements _ForecastDay {
       _$$ForecastDayImplFromJson(json);
 
   @override
-  final String maxtemp_c;
+  final double maxtemp_c;
   @override
-  final String mintemp_c;
+  final double mintemp_c;
   @override
   final ForecastCondition condition;
   @override
-  final String avgtemp_c;
+  final double avgtemp_c;
 
   @override
   String toString() {
@@ -222,22 +222,22 @@ class _$ForecastDayImpl implements _ForecastDay {
 
 abstract class _ForecastDay implements ForecastDay {
   const factory _ForecastDay(
-      {required final String maxtemp_c,
-      required final String mintemp_c,
+      {required final double maxtemp_c,
+      required final double mintemp_c,
       required final ForecastCondition condition,
-      required final String avgtemp_c}) = _$ForecastDayImpl;
+      required final double avgtemp_c}) = _$ForecastDayImpl;
 
   factory _ForecastDay.fromJson(Map<String, dynamic> json) =
       _$ForecastDayImpl.fromJson;
 
   @override
-  String get maxtemp_c;
+  double get maxtemp_c;
   @override
-  String get mintemp_c;
+  double get mintemp_c;
   @override
   ForecastCondition get condition;
   @override
-  String get avgtemp_c;
+  double get avgtemp_c;
 
   /// Create a copy of ForecastDay
   /// with the given fields replaced by the non-null parameter values.

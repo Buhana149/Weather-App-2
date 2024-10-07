@@ -20,10 +20,10 @@ CurrentWeather _$CurrentWeatherFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CurrentWeather {
-  String get temp_c => throw _privateConstructorUsedError;
+  double get temp_c => throw _privateConstructorUsedError;
   CurrentCondition get condition => throw _privateConstructorUsedError;
-  String get wind_kph => throw _privateConstructorUsedError;
-  String get humidity => throw _privateConstructorUsedError;
+  double get wind_kph => throw _privateConstructorUsedError;
+  double get humidity => throw _privateConstructorUsedError;
 
   /// Serializes this CurrentWeather to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +42,10 @@ abstract class $CurrentWeatherCopyWith<$Res> {
       _$CurrentWeatherCopyWithImpl<$Res, CurrentWeather>;
   @useResult
   $Res call(
-      {String temp_c,
+      {double temp_c,
       CurrentCondition condition,
-      String wind_kph,
-      String humidity});
+      double wind_kph,
+      double humidity});
 
   $CurrentConditionCopyWith<$Res> get condition;
 }
@@ -74,7 +74,7 @@ class _$CurrentWeatherCopyWithImpl<$Res, $Val extends CurrentWeather>
       temp_c: null == temp_c
           ? _value.temp_c
           : temp_c // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       condition: null == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -82,11 +82,11 @@ class _$CurrentWeatherCopyWithImpl<$Res, $Val extends CurrentWeather>
       wind_kph: null == wind_kph
           ? _value.wind_kph
           : wind_kph // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       humidity: null == humidity
           ? _value.humidity
           : humidity // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
     ) as $Val);
   }
 
@@ -110,10 +110,10 @@ abstract class _$$CurrentWeatherImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String temp_c,
+      {double temp_c,
       CurrentCondition condition,
-      String wind_kph,
-      String humidity});
+      double wind_kph,
+      double humidity});
 
   @override
   $CurrentConditionCopyWith<$Res> get condition;
@@ -141,7 +141,7 @@ class __$$CurrentWeatherImplCopyWithImpl<$Res>
       temp_c: null == temp_c
           ? _value.temp_c
           : temp_c // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       condition: null == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -149,11 +149,11 @@ class __$$CurrentWeatherImplCopyWithImpl<$Res>
       wind_kph: null == wind_kph
           ? _value.wind_kph
           : wind_kph // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       humidity: null == humidity
           ? _value.humidity
           : humidity // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
     ));
   }
 }
@@ -171,13 +171,13 @@ class _$CurrentWeatherImpl implements _CurrentWeather {
       _$$CurrentWeatherImplFromJson(json);
 
   @override
-  final String temp_c;
+  final double temp_c;
   @override
   final CurrentCondition condition;
   @override
-  final String wind_kph;
+  final double wind_kph;
   @override
-  final String humidity;
+  final double humidity;
 
   @override
   String toString() {
@@ -222,22 +222,22 @@ class _$CurrentWeatherImpl implements _CurrentWeather {
 
 abstract class _CurrentWeather implements CurrentWeather {
   const factory _CurrentWeather(
-      {required final String temp_c,
+      {required final double temp_c,
       required final CurrentCondition condition,
-      required final String wind_kph,
-      required final String humidity}) = _$CurrentWeatherImpl;
+      required final double wind_kph,
+      required final double humidity}) = _$CurrentWeatherImpl;
 
   factory _CurrentWeather.fromJson(Map<String, dynamic> json) =
       _$CurrentWeatherImpl.fromJson;
 
   @override
-  String get temp_c;
+  double get temp_c;
   @override
   CurrentCondition get condition;
   @override
-  String get wind_kph;
+  double get wind_kph;
   @override
-  String get humidity;
+  double get humidity;
 
   /// Create a copy of CurrentWeather
   /// with the given fields replaced by the non-null parameter values.

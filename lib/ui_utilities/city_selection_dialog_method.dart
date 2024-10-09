@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app_2/freezed/weather_general.dart';
 import 'package:weather_app_2/provider/weather_provider.dart';
 import 'package:weather_app_2/ui_utilities/city_selection_dialog.dart';
 import 'package:weather_app_2/ui_utilities/showCustomDialog.dart';
@@ -23,9 +24,9 @@ void showCitySelectionDialog(
           
         },
         itemBuilder: (context, suggestion) {
-          final citySuggestion = suggestion as Map<String, dynamic>?;
+          final citySuggestion = suggestion as WeatherGeneral;
           return ListTile(
-            title: Text(citySuggestion?['name'] ?? 'Unknown City'),
+            title: Text(citySuggestion.location.name),
           );
         },
         suggestionsCallback: (pattern) async {

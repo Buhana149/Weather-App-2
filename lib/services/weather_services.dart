@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:weather_app_2/freezed/forecast_list.dart';
-import 'package:weather_app_2/freezed/main_forecastday.dart';
+import 'package:weather_app_2/freezed/main_forecast.dart';
 import 'package:weather_app_2/freezed/weather_general.dart';
 
 class WeatherServices {
@@ -10,13 +10,14 @@ class WeatherServices {
   final String searchBaseUrl = 'http://api.weatherapi.com/v1/search.json';
 
   Future<WeatherGeneral> fetchCurrentWeather(String city) async {
-    try {
-      final jsonMap = json.decode(apiresponse);
-      final list = MainForecastday.fromJson(jsonMap);
-      print('Lista de teste este $list');
-    } catch (e) {
-      print('Error is $e');
-    }
+    // try {
+    //   final jsonMap = json.decode(apiresponse);
+    //   print(jsonMap);
+    //   final list = MainForecast.fromJson(jsonMap);
+    //   print('Lista de teste este $list');
+    // } catch (e) {
+    //   print('Error is $e');
+    // }
 
     final url = '$forecastBaseUrl?key=$apiKey&q=$city&days=1&aqi=no&alerts=no';
     final response = await http.get(Uri.parse(url));
@@ -28,13 +29,13 @@ class WeatherServices {
       throw Exception('Failed to load weather data');
   }
 
-  Future<ForecastList> fetch7DayForecast(String city) async {
+  Future<WeatherGeneral> fetch7DayForecast(String city) async {
     final url = '$forecastBaseUrl?key=$apiKey&q=$city&days=7&aqi=no&alerts=no';
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
       final jsonBody = json.decode(response.body);
-      return ForecastList.fromJson(jsonBody);
+      return WeatherGeneral.fromJson(jsonBody);
     } else
       throw Exception('Failed to load forecast data');
   }

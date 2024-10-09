@@ -116,7 +116,7 @@ class __$$CurrentConditionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CurrentConditionImpl implements _CurrentCondition {
-  const _$CurrentConditionImpl({required this.text, required this.icon});
+  _$CurrentConditionImpl({required this.text, required this.icon});
 
   factory _$CurrentConditionImpl.fromJson(Map<String, dynamic> json) =>
       _$$CurrentConditionImplFromJson(json);
@@ -162,7 +162,7 @@ class _$CurrentConditionImpl implements _CurrentCondition {
 }
 
 abstract class _CurrentCondition implements CurrentCondition {
-  const factory _CurrentCondition(
+  factory _CurrentCondition(
       {required final String text,
       required final String icon}) = _$CurrentConditionImpl;
 

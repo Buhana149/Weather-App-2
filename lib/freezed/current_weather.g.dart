@@ -12,7 +12,7 @@ _$CurrentWeatherImpl _$$CurrentWeatherImplFromJson(Map<String, dynamic> json) =>
       condition:
           CurrentCondition.fromJson(json['condition'] as Map<String, dynamic>),
       wind_kph: (json['wind_kph'] as num).toDouble(),
-      humidity: (json['humidity'] as num).toDouble(),
+      humidity: (json['humidity'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$CurrentWeatherImplToJson(

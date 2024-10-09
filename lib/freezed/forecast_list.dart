@@ -6,7 +6,7 @@ part 'forecast_list.g.dart';
 
 @freezed
 class ForecastList with _$ForecastList {
-  const factory ForecastList({
+  factory ForecastList({
     required List<Forecast> forecastday,
   }) = _ForecastList;
 

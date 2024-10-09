@@ -161,7 +161,7 @@ class __$$ForecastDayImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ForecastDayImpl implements _ForecastDay {
-  const _$ForecastDayImpl(
+  _$ForecastDayImpl(
       {required this.maxtemp_c,
       required this.mintemp_c,
       required this.avgtemp_c,
@@ -221,7 +221,7 @@ class _$ForecastDayImpl implements _ForecastDay {
 }
 
 abstract class _ForecastDay implements ForecastDay {
-  const factory _ForecastDay(
+  factory _ForecastDay(
       {required final double maxtemp_c,
       required final double mintemp_c,
       required final double avgtemp_c,

@@ -116,7 +116,7 @@ class __$$ForecastAstroImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ForecastAstroImpl implements _ForecastAstro {
-  const _$ForecastAstroImpl({required this.sunrise, required this.sunset});
+  _$ForecastAstroImpl({required this.sunrise, required this.sunset});
 
   factory _$ForecastAstroImpl.fromJson(Map<String, dynamic> json) =>
       _$$ForecastAstroImplFromJson(json);
@@ -161,7 +161,7 @@ class _$ForecastAstroImpl implements _ForecastAstro {
 }
 
 abstract class _ForecastAstro implements ForecastAstro {
-  const factory _ForecastAstro(
+  factory _ForecastAstro(
       {required final String sunrise,
       required final String sunset}) = _$ForecastAstroImpl;
 

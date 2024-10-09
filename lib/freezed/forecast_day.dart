@@ -6,7 +6,7 @@ part 'forecast_day.g.dart';
 
 @freezed
 class ForecastDay with _$ForecastDay {
-  const factory ForecastDay({
+  factory ForecastDay({
     required double maxtemp_c,
     required double mintemp_c,
     required double avgtemp_c,

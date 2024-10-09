@@ -20,7 +20,7 @@ LocationName _$LocationNameFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LocationName {
-  String? get name => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   /// Serializes this LocationName to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $LocationNameCopyWith<$Res> {
           LocationName value, $Res Function(LocationName) then) =
       _$LocationNameCopyWithImpl<$Res, LocationName>;
   @useResult
-  $Res call({String? name});
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -56,13 +56,13 @@ class _$LocationNameCopyWithImpl<$Res, $Val extends LocationName>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -75,7 +75,7 @@ abstract class _$$LocationNameImplCopyWith<$Res>
       __$$LocationNameImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? name});
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -91,13 +91,13 @@ class __$$LocationNameImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
+    Object? name = null,
   }) {
     return _then(_$LocationNameImpl(
-      name: freezed == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -105,13 +105,13 @@ class __$$LocationNameImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LocationNameImpl implements _LocationName {
-  const _$LocationNameImpl({required this.name});
+  _$LocationNameImpl({required this.name});
 
   factory _$LocationNameImpl.fromJson(Map<String, dynamic> json) =>
       _$$LocationNameImplFromJson(json);
 
   @override
-  final String? name;
+  final String name;
 
   @override
   String toString() {
@@ -147,14 +147,13 @@ class _$LocationNameImpl implements _LocationName {
 }
 
 abstract class _LocationName implements LocationName {
-  const factory _LocationName({required final String? name}) =
-      _$LocationNameImpl;
+  factory _LocationName({required final String name}) = _$LocationNameImpl;
 
   factory _LocationName.fromJson(Map<String, dynamic> json) =
       _$LocationNameImpl.fromJson;
 
   @override
-  String? get name;
+  String get name;
 
   /// Create a copy of LocationName
   /// with the given fields replaced by the non-null parameter values.

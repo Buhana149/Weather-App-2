@@ -59,30 +59,30 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     SizedBox(height: 10),
-                    // HomeWeatherDetails(
-                    //   networkImage:
-                    //       'http:${value.currentWeather?.current.condition.icon}',
-                    //   currentTemp:
-                    //       '${value.currentWeather?.current.temp_c}°C',
-                    //   currentCondition:
-                    //       '${value.currentWeather?.current.condition.text}',
-                    //   maxTemp:
-                    //       'Max: ${value.currentWeather?.forecast.forecastday[0].forecastList.day.maxtemp_c}°C',
-                    //   minTemp:
-                    //       'Min: ${value.currentWeather?.forecast.forecastday[0].forecastList.day.mintemp_c}°C',
-                    // ),
+                    HomeWeatherDetails(
+                      networkImage:
+                          'http:${value.currentWeather?.current.condition.icon}',
+                      currentTemp:
+                          '${value.currentWeather?.current.temp_c}°C',
+                      currentCondition:
+                          '${value.currentWeather?.current.condition.text}',
+                      maxTemp:
+                          'Max: ${value.currentWeather?.forecast.forecastday[0].day.maxtemp_c}°C',
+                      minTemp:
+                          'Min: ${value.currentWeather?.forecast.forecastday[0].day.mintemp_c}°C',
+                    ),
                     SizedBox(height: 45),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // BuildWeatherDetails(
-                        //     label: 'Sunrise',
-                        //     icon: Icons.wb_sunny,
-                        //     value: value.currentWeather!.forecast.forecastday[0].forecastList.astro.sunrise),
-                        // BuildWeatherDetails(
-                        //     label: 'Sunset',
-                        //     icon: Icons.brightness_3,
-                        //     value: value.currentWeather!.forecast.forecastday[0].forecastList.astro.sunset),
+                        BuildWeatherDetails(
+                            label: 'Sunrise',
+                            icon: Icons.wb_sunny,
+                            value: value.currentWeather!.forecast.forecastday[0].astro.sunrise),
+                        BuildWeatherDetails(
+                            label: 'Sunset',
+                            icon: Icons.brightness_3,
+                            value: value.currentWeather!.forecast.forecastday[0].astro.sunset),
                       ],
                     ),
                     const SizedBox(height: 20),

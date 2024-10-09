@@ -5,7 +5,7 @@ part 'current_condition.g.dart';
 
 @freezed
 class CurrentCondition with _$CurrentCondition {
-  const factory CurrentCondition({
+  factory CurrentCondition({
     required String text,
     required String icon,
   }) = _CurrentCondition;

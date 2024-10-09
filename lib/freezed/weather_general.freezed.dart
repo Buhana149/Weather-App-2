@@ -22,7 +22,7 @@ WeatherGeneral _$WeatherGeneralFromJson(Map<String, dynamic> json) {
 mixin _$WeatherGeneral {
   LocationName get location => throw _privateConstructorUsedError;
   CurrentWeather get current => throw _privateConstructorUsedError;
-  MainForecastday get forecast => throw _privateConstructorUsedError;
+  ForecastList get forecast => throw _privateConstructorUsedError;
 
   /// Serializes this WeatherGeneral to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,13 +41,11 @@ abstract class $WeatherGeneralCopyWith<$Res> {
       _$WeatherGeneralCopyWithImpl<$Res, WeatherGeneral>;
   @useResult
   $Res call(
-      {LocationName location,
-      CurrentWeather current,
-      MainForecastday forecast});
+      {LocationName location, CurrentWeather current, ForecastList forecast});
 
   $LocationNameCopyWith<$Res> get location;
   $CurrentWeatherCopyWith<$Res> get current;
-  $MainForecastdayCopyWith<$Res> get forecast;
+  $ForecastListCopyWith<$Res> get forecast;
 }
 
 /// @nodoc
@@ -81,7 +79,7 @@ class _$WeatherGeneralCopyWithImpl<$Res, $Val extends WeatherGeneral>
       forecast: null == forecast
           ? _value.forecast
           : forecast // ignore: cast_nullable_to_non_nullable
-              as MainForecastday,
+              as ForecastList,
     ) as $Val);
   }
 
@@ -109,8 +107,8 @@ class _$WeatherGeneralCopyWithImpl<$Res, $Val extends WeatherGeneral>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $MainForecastdayCopyWith<$Res> get forecast {
-    return $MainForecastdayCopyWith<$Res>(_value.forecast, (value) {
+  $ForecastListCopyWith<$Res> get forecast {
+    return $ForecastListCopyWith<$Res>(_value.forecast, (value) {
       return _then(_value.copyWith(forecast: value) as $Val);
     });
   }
@@ -125,16 +123,14 @@ abstract class _$$WeatherGeneralImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {LocationName location,
-      CurrentWeather current,
-      MainForecastday forecast});
+      {LocationName location, CurrentWeather current, ForecastList forecast});
 
   @override
   $LocationNameCopyWith<$Res> get location;
   @override
   $CurrentWeatherCopyWith<$Res> get current;
   @override
-  $MainForecastdayCopyWith<$Res> get forecast;
+  $ForecastListCopyWith<$Res> get forecast;
 }
 
 /// @nodoc
@@ -166,7 +162,7 @@ class __$$WeatherGeneralImplCopyWithImpl<$Res>
       forecast: null == forecast
           ? _value.forecast
           : forecast // ignore: cast_nullable_to_non_nullable
-              as MainForecastday,
+              as ForecastList,
     ));
   }
 }
@@ -174,7 +170,7 @@ class __$$WeatherGeneralImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$WeatherGeneralImpl implements _WeatherGeneral {
-  const _$WeatherGeneralImpl(
+  _$WeatherGeneralImpl(
       {required this.location, required this.current, required this.forecast});
 
   factory _$WeatherGeneralImpl.fromJson(Map<String, dynamic> json) =>
@@ -185,7 +181,7 @@ class _$WeatherGeneralImpl implements _WeatherGeneral {
   @override
   final CurrentWeather current;
   @override
-  final MainForecastday forecast;
+  final ForecastList forecast;
 
   @override
   String toString() {
@@ -226,10 +222,10 @@ class _$WeatherGeneralImpl implements _WeatherGeneral {
 }
 
 abstract class _WeatherGeneral implements WeatherGeneral {
-  const factory _WeatherGeneral(
+  factory _WeatherGeneral(
       {required final LocationName location,
       required final CurrentWeather current,
-      required final MainForecastday forecast}) = _$WeatherGeneralImpl;
+      required final ForecastList forecast}) = _$WeatherGeneralImpl;
 
   factory _WeatherGeneral.fromJson(Map<String, dynamic> json) =
       _$WeatherGeneralImpl.fromJson;
@@ -239,7 +235,7 @@ abstract class _WeatherGeneral implements WeatherGeneral {
   @override
   CurrentWeather get current;
   @override
-  MainForecastday get forecast;
+  ForecastList get forecast;
 
   /// Create a copy of WeatherGeneral
   /// with the given fields replaced by the non-null parameter values.

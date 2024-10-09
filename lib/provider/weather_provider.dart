@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app_2/freezed/forecast.dart';
 import 'package:weather_app_2/freezed/forecast_list.dart';
+import 'package:weather_app_2/freezed/main_forecast.dart';
 import 'package:weather_app_2/freezed/weather_general.dart';
 import 'package:weather_app_2/services/weather_services.dart';
 
@@ -13,8 +14,8 @@ class WeatherProvider extends ChangeNotifier {
   String? _cityTitle = 'London';
   String? get cityTitle => _cityTitle;
 
-  List<ForecastList>? _forecast;
-  List<ForecastList>? get forecast => _forecast;
+  WeatherGeneral? _forecast;
+ WeatherGeneral? get forecast => _forecast;
 
   void setCityTitle(String cityTitle) {
     _cityTitle = cityTitle;
@@ -41,7 +42,7 @@ class WeatherProvider extends ChangeNotifier {
     try {
       final forecastData =
           await _weatherServices.fetch7DayForecast(cityTitle ?? 'London');
-      _forecast = forecastData as List<ForecastList>?;
+      _forecast = forecastData;
       notifyListeners();
     } catch (e) {
       print('Error is $e from fetchForecastProvider');

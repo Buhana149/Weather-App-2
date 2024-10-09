@@ -20,7 +20,9 @@ Forecast _$ForecastFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Forecast {
-  String? get date => throw _privateConstructorUsedError;
+  String get date => throw _privateConstructorUsedError;
+  ForecastDay get day => throw _privateConstructorUsedError;
+  ForecastAstro get astro => throw _privateConstructorUsedError;
 
   /// Serializes this Forecast to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +39,10 @@ abstract class $ForecastCopyWith<$Res> {
   factory $ForecastCopyWith(Forecast value, $Res Function(Forecast) then) =
       _$ForecastCopyWithImpl<$Res, Forecast>;
   @useResult
-  $Res call({String? date});
+  $Res call({String date, ForecastDay day, ForecastAstro astro});
+
+  $ForecastDayCopyWith<$Res> get day;
+  $ForecastAstroCopyWith<$Res> get astro;
 }
 
 /// @nodoc
@@ -55,14 +60,44 @@ class _$ForecastCopyWithImpl<$Res, $Val extends Forecast>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? date = freezed,
+    Object? date = null,
+    Object? day = null,
+    Object? astro = null,
   }) {
     return _then(_value.copyWith(
-      date: freezed == date
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      day: null == day
+          ? _value.day
+          : day // ignore: cast_nullable_to_non_nullable
+              as ForecastDay,
+      astro: null == astro
+          ? _value.astro
+          : astro // ignore: cast_nullable_to_non_nullable
+              as ForecastAstro,
     ) as $Val);
+  }
+
+  /// Create a copy of Forecast
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ForecastDayCopyWith<$Res> get day {
+    return $ForecastDayCopyWith<$Res>(_value.day, (value) {
+      return _then(_value.copyWith(day: value) as $Val);
+    });
+  }
+
+  /// Create a copy of Forecast
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ForecastAstroCopyWith<$Res> get astro {
+    return $ForecastAstroCopyWith<$Res>(_value.astro, (value) {
+      return _then(_value.copyWith(astro: value) as $Val);
+    });
   }
 }
 
@@ -74,7 +109,12 @@ abstract class _$$ForecastImplCopyWith<$Res>
       __$$ForecastImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? date});
+  $Res call({String date, ForecastDay day, ForecastAstro astro});
+
+  @override
+  $ForecastDayCopyWith<$Res> get day;
+  @override
+  $ForecastAstroCopyWith<$Res> get astro;
 }
 
 /// @nodoc
@@ -90,13 +130,23 @@ class __$$ForecastImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? date = freezed,
+    Object? date = null,
+    Object? day = null,
+    Object? astro = null,
   }) {
     return _then(_$ForecastImpl(
-      date: freezed == date
+      date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      day: null == day
+          ? _value.day
+          : day // ignore: cast_nullable_to_non_nullable
+              as ForecastDay,
+      astro: null == astro
+          ? _value.astro
+          : astro // ignore: cast_nullable_to_non_nullable
+              as ForecastAstro,
     ));
   }
 }
@@ -104,17 +154,21 @@ class __$$ForecastImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ForecastImpl implements _Forecast {
-  const _$ForecastImpl({required this.date});
+  _$ForecastImpl({required this.date, required this.day, required this.astro});
 
   factory _$ForecastImpl.fromJson(Map<String, dynamic> json) =>
       _$$ForecastImplFromJson(json);
 
   @override
-  final String? date;
+  final String date;
+  @override
+  final ForecastDay day;
+  @override
+  final ForecastAstro astro;
 
   @override
   String toString() {
-    return 'Forecast(date: $date)';
+    return 'Forecast(date: $date, day: $day, astro: $astro)';
   }
 
   @override
@@ -122,12 +176,14 @@ class _$ForecastImpl implements _Forecast {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ForecastImpl &&
-            (identical(other.date, date) || other.date == date));
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.day, day) || other.day == day) &&
+            (identical(other.astro, astro) || other.astro == astro));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, date);
+  int get hashCode => Object.hash(runtimeType, date, day, astro);
 
   /// Create a copy of Forecast
   /// with the given fields replaced by the non-null parameter values.
@@ -146,13 +202,20 @@ class _$ForecastImpl implements _Forecast {
 }
 
 abstract class _Forecast implements Forecast {
-  const factory _Forecast({required final String? date}) = _$ForecastImpl;
+  factory _Forecast(
+      {required final String date,
+      required final ForecastDay day,
+      required final ForecastAstro astro}) = _$ForecastImpl;
 
   factory _Forecast.fromJson(Map<String, dynamic> json) =
       _$ForecastImpl.fromJson;
 
   @override
-  String? get date;
+  String get date;
+  @override
+  ForecastDay get day;
+  @override
+  ForecastAstro get astro;
 
   /// Create a copy of Forecast
   /// with the given fields replaced by the non-null parameter values.

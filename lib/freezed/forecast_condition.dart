@@ -5,9 +5,9 @@ part 'forecast_condition.g.dart';
 
 @freezed
 class ForecastCondition with _$ForecastCondition {
-  const factory ForecastCondition({
-    required String? text,
-    required String? icon,
+  factory ForecastCondition({
+    required String text,
+    required String icon,
   }) = _ForecastCondition;
 
   factory ForecastCondition.fromJson(Map<String, dynamic> json) =>

@@ -105,7 +105,7 @@ class __$$ForecastListImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ForecastListImpl implements _ForecastList {
-  const _$ForecastListImpl({required final List<Forecast> forecastday})
+  _$ForecastListImpl({required final List<Forecast> forecastday})
       : _forecastday = forecastday;
 
   factory _$ForecastListImpl.fromJson(Map<String, dynamic> json) =>
@@ -155,7 +155,7 @@ class _$ForecastListImpl implements _ForecastList {
 }
 
 abstract class _ForecastList implements ForecastList {
-  const factory _ForecastList({required final List<Forecast> forecastday}) =
+  factory _ForecastList({required final List<Forecast> forecastday}) =
       _$ForecastListImpl;
 
   factory _ForecastList.fromJson(Map<String, dynamic> json) =

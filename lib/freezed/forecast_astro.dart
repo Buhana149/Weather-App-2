@@ -5,7 +5,7 @@ part 'forecast_astro.g.dart';
 
 @freezed
 class ForecastAstro with _$ForecastAstro {
-  const factory ForecastAstro({
+  factory ForecastAstro({
     required String sunrise,
     required String sunset,
   }) = _ForecastAstro;

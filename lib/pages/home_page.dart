@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                     HomeWeatherDetails(
                       networkImage:
                           'http:${value.currentWeather?.current.condition.icon}',
-                      currentTemp: '${value.currentWeather?.current.temp_c}°C',
+                      currentTemp: '${value.currentWeather?.current.temp_c.toInt()}°C',
                       currentCondition:
                           '${value.currentWeather?.current.condition.text}',
                       maxTemp:

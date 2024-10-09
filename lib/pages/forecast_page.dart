@@ -67,15 +67,15 @@ class _ForecastPageState extends State<ForecastPage> {
                                 value.forecast!.forecast.forecastday.length,
                             itemBuilder: (context, index) {
                               String iconUrl =
-                                  'http:${value.forecast!.forecast.forecastday[0].day.condition.icon}';
+                                  'http:${value.forecast!.forecast.forecastday[index].day.condition.icon}';
                               return ForecastTile(
                                 iconImage: iconUrl,
                                 avgTemp:
-                                    '${value.forecast!.forecast.forecastday[0].date}\n${value.forecast!.forecast.forecastday[0].day.avgtemp_c} °C',
-                                weatherCondition: value.forecast!.forecast
-                                    .forecastday[0].day.condition.text,
+                                    '${value.forecast!.forecast.forecastday[index].date}\n${value.forecast!.forecast.forecastday[index].day.avgtemp_c.toInt()} °C',
+                                weatherCondition: '${value.forecast!.forecast
+                                    .forecastday[index].day.condition.text}',
                                 maxMinTemp:
-                                    'Max:${value.forecast!.forecast.forecastday[0].day.maxtemp_c} °C\nMin:${value.forecast!.forecast.forecastday[0].day.mintemp_c}',
+                                    'Max: ${value.forecast!.forecast.forecastday[index].day.maxtemp_c.toInt()} °C\nMin: ${value.forecast!.forecast.forecastday[index].day.mintemp_c.toInt()}°C',
                               );
                             })
                       ],

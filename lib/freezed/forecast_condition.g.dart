@@ -9,8 +9,8 @@ part of 'forecast_condition.dart';
 _$ForecastConditionImpl _$$ForecastConditionImplFromJson(
         Map<String, dynamic> json) =>
     _$ForecastConditionImpl(
-      text: json['text'] as String,
-      icon: json['icon'] as String,
+      text: json['text'] as String?,
+      icon: json['icon'] as String?,
     );
 
 Map<String, dynamic> _$$ForecastConditionImplToJson(

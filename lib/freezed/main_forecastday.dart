@@ -7,7 +7,7 @@ part 'main_forecastday.g.dart';
 @freezed
 class MainForecastday with _$MainForecastday {
   const factory MainForecastday({
-    required ForecastList mainForecastday,
+    required ForecastList forecast,
   }) = _MainForecastday;
 
   factory MainForecastday.fromJson(Map<String, dynamic> json) =>

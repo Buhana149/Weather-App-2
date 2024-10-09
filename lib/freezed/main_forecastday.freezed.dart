@@ -20,7 +20,7 @@ MainForecastday _$MainForecastdayFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MainForecastday {
-  ForecastList get mainForecastday => throw _privateConstructorUsedError;
+  ForecastList get forecast => throw _privateConstructorUsedError;
 
   /// Serializes this MainForecastday to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,9 +38,9 @@ abstract class $MainForecastdayCopyWith<$Res> {
           MainForecastday value, $Res Function(MainForecastday) then) =
       _$MainForecastdayCopyWithImpl<$Res, MainForecastday>;
   @useResult
-  $Res call({ForecastList mainForecastday});
+  $Res call({ForecastList forecast});
 
-  $ForecastListCopyWith<$Res> get mainForecastday;
+  $ForecastListCopyWith<$Res> get forecast;
 }
 
 /// @nodoc
@@ -58,12 +58,12 @@ class _$MainForecastdayCopyWithImpl<$Res, $Val extends MainForecastday>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mainForecastday = null,
+    Object? forecast = null,
   }) {
     return _then(_value.copyWith(
-      mainForecastday: null == mainForecastday
-          ? _value.mainForecastday
-          : mainForecastday // ignore: cast_nullable_to_non_nullable
+      forecast: null == forecast
+          ? _value.forecast
+          : forecast // ignore: cast_nullable_to_non_nullable
               as ForecastList,
     ) as $Val);
   }
@@ -72,9 +72,9 @@ class _$MainForecastdayCopyWithImpl<$Res, $Val extends MainForecastday>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ForecastListCopyWith<$Res> get mainForecastday {
-    return $ForecastListCopyWith<$Res>(_value.mainForecastday, (value) {
-      return _then(_value.copyWith(mainForecastday: value) as $Val);
+  $ForecastListCopyWith<$Res> get forecast {
+    return $ForecastListCopyWith<$Res>(_value.forecast, (value) {
+      return _then(_value.copyWith(forecast: value) as $Val);
     });
   }
 }
@@ -87,10 +87,10 @@ abstract class _$$MainForecastdayImplCopyWith<$Res>
       __$$MainForecastdayImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ForecastList mainForecastday});
+  $Res call({ForecastList forecast});
 
   @override
-  $ForecastListCopyWith<$Res> get mainForecastday;
+  $ForecastListCopyWith<$Res> get forecast;
 }
 
 /// @nodoc
@@ -106,12 +106,12 @@ class __$$MainForecastdayImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mainForecastday = null,
+    Object? forecast = null,
   }) {
     return _then(_$MainForecastdayImpl(
-      mainForecastday: null == mainForecastday
-          ? _value.mainForecastday
-          : mainForecastday // ignore: cast_nullable_to_non_nullable
+      forecast: null == forecast
+          ? _value.forecast
+          : forecast // ignore: cast_nullable_to_non_nullable
               as ForecastList,
     ));
   }
@@ -120,17 +120,17 @@ class __$$MainForecastdayImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MainForecastdayImpl implements _MainForecastday {
-  const _$MainForecastdayImpl({required this.mainForecastday});
+  const _$MainForecastdayImpl({required this.forecast});
 
   factory _$MainForecastdayImpl.fromJson(Map<String, dynamic> json) =>
       _$$MainForecastdayImplFromJson(json);
 
   @override
-  final ForecastList mainForecastday;
+  final ForecastList forecast;
 
   @override
   String toString() {
-    return 'MainForecastday(mainForecastday: $mainForecastday)';
+    return 'MainForecastday(forecast: $forecast)';
   }
 
   @override
@@ -138,13 +138,13 @@ class _$MainForecastdayImpl implements _MainForecastday {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MainForecastdayImpl &&
-            (identical(other.mainForecastday, mainForecastday) ||
-                other.mainForecastday == mainForecastday));
+            (identical(other.forecast, forecast) ||
+                other.forecast == forecast));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, mainForecastday);
+  int get hashCode => Object.hash(runtimeType, forecast);
 
   /// Create a copy of MainForecastday
   /// with the given fields replaced by the non-null parameter values.
@@ -164,14 +164,14 @@ class _$MainForecastdayImpl implements _MainForecastday {
 }
 
 abstract class _MainForecastday implements MainForecastday {
-  const factory _MainForecastday(
-      {required final ForecastList mainForecastday}) = _$MainForecastdayImpl;
+  const factory _MainForecastday({required final ForecastList forecast}) =
+      _$MainForecastdayImpl;
 
   factory _MainForecastday.fromJson(Map<String, dynamic> json) =
       _$MainForecastdayImpl.fromJson;
 
   @override
-  ForecastList get mainForecastday;
+  ForecastList get forecast;
 
   /// Create a copy of MainForecastday
   /// with the given fields replaced by the non-null parameter values.

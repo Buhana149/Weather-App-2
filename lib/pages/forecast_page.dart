@@ -65,17 +65,17 @@ class _ForecastPageState extends State<ForecastPage> {
                             shrinkWrap: true,
                             itemCount: value.forecast?.length ?? 0,
                             itemBuilder: (context, index) {
-                              String iconUrl =
-                                  'http:${value.forecast?[index].day.condition.icon}';
-                              return ForecastTile(
-                                iconImage: iconUrl,
-                                avgTemp:
-                                    '${value.forecast?[index].date}\n${value.forecast?[index].day.avgtemp_c} °C',
-                                weatherCondition:
-                                    value.forecast?[index].day.condition.text ?? '',
-                                maxMinTemp:
-                                    'Max:${value.forecast?[index].day.maxtemp_c} °C\nMin:${value.forecast?[index].day.mintemp_c}',
-                              );
+                              // String iconUrl =
+                              //     'http:${value.forecast?[index].day.condition.icon}';
+                              // return ForecastTile(
+                              //   iconImage: iconUrl,
+                              //   avgTemp:
+                              //       '${value.forecast?[index].date}\n${value.forecast?[index].day.avgtemp_c} °C',
+                              //   weatherCondition:
+                              //       value.forecast?[index].day.condition.text ?? '',
+                              //   maxMinTemp:
+                              //       'Max:${value.forecast?[index].day.maxtemp_c} °C\nMin:${value.forecast?[index].day.mintemp_c}',
+                              // );
                             })
                       ],
                     ),

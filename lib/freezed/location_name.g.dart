@@ -8,7 +8,7 @@ part of 'location_name.dart';
 
 _$LocationNameImpl _$$LocationNameImplFromJson(Map<String, dynamic> json) =>
     _$LocationNameImpl(
-      name: json['name'] as String,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$$LocationNameImplToJson(_$LocationNameImpl instance) =>

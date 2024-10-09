@@ -20,7 +20,7 @@ ForecastList _$ForecastListFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ForecastList {
-  List<Forecast> get forecastList => throw _privateConstructorUsedError;
+  List<Forecast> get forecastday => throw _privateConstructorUsedError;
 
   /// Serializes this ForecastList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $ForecastListCopyWith<$Res> {
           ForecastList value, $Res Function(ForecastList) then) =
       _$ForecastListCopyWithImpl<$Res, ForecastList>;
   @useResult
-  $Res call({List<Forecast> forecastList});
+  $Res call({List<Forecast> forecastday});
 }
 
 /// @nodoc
@@ -56,12 +56,12 @@ class _$ForecastListCopyWithImpl<$Res, $Val extends ForecastList>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? forecastList = null,
+    Object? forecastday = null,
   }) {
     return _then(_value.copyWith(
-      forecastList: null == forecastList
-          ? _value.forecastList
-          : forecastList // ignore: cast_nullable_to_non_nullable
+      forecastday: null == forecastday
+          ? _value.forecastday
+          : forecastday // ignore: cast_nullable_to_non_nullable
               as List<Forecast>,
     ) as $Val);
   }
@@ -75,7 +75,7 @@ abstract class _$$ForecastListImplCopyWith<$Res>
       __$$ForecastListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Forecast> forecastList});
+  $Res call({List<Forecast> forecastday});
 }
 
 /// @nodoc
@@ -91,12 +91,12 @@ class __$$ForecastListImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? forecastList = null,
+    Object? forecastday = null,
   }) {
     return _then(_$ForecastListImpl(
-      forecastList: null == forecastList
-          ? _value._forecastList
-          : forecastList // ignore: cast_nullable_to_non_nullable
+      forecastday: null == forecastday
+          ? _value._forecastday
+          : forecastday // ignore: cast_nullable_to_non_nullable
               as List<Forecast>,
     ));
   }
@@ -105,23 +105,23 @@ class __$$ForecastListImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ForecastListImpl implements _ForecastList {
-  const _$ForecastListImpl({required final List<Forecast> forecastList})
-      : _forecastList = forecastList;
+  const _$ForecastListImpl({required final List<Forecast> forecastday})
+      : _forecastday = forecastday;
 
   factory _$ForecastListImpl.fromJson(Map<String, dynamic> json) =>
       _$$ForecastListImplFromJson(json);
 
-  final List<Forecast> _forecastList;
+  final List<Forecast> _forecastday;
   @override
-  List<Forecast> get forecastList {
-    if (_forecastList is EqualUnmodifiableListView) return _forecastList;
+  List<Forecast> get forecastday {
+    if (_forecastday is EqualUnmodifiableListView) return _forecastday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_forecastList);
+    return EqualUnmodifiableListView(_forecastday);
   }
 
   @override
   String toString() {
-    return 'ForecastList(forecastList: $forecastList)';
+    return 'ForecastList(forecastday: $forecastday)';
   }
 
   @override
@@ -130,13 +130,13 @@ class _$ForecastListImpl implements _ForecastList {
         (other.runtimeType == runtimeType &&
             other is _$ForecastListImpl &&
             const DeepCollectionEquality()
-                .equals(other._forecastList, _forecastList));
+                .equals(other._forecastday, _forecastday));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_forecastList));
+      runtimeType, const DeepCollectionEquality().hash(_forecastday));
 
   /// Create a copy of ForecastList
   /// with the given fields replaced by the non-null parameter values.
@@ -155,14 +155,14 @@ class _$ForecastListImpl implements _ForecastList {
 }
 
 abstract class _ForecastList implements ForecastList {
-  const factory _ForecastList({required final List<Forecast> forecastList}) =
+  const factory _ForecastList({required final List<Forecast> forecastday}) =
       _$ForecastListImpl;
 
   factory _ForecastList.fromJson(Map<String, dynamic> json) =
       _$ForecastListImpl.fromJson;
 
   @override
-  List<Forecast> get forecastList;
+  List<Forecast> get forecastday;
 
   /// Create a copy of ForecastList
   /// with the given fields replaced by the non-null parameter values.

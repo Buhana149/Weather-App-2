@@ -20,8 +20,8 @@ ForecastCondition _$ForecastConditionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ForecastCondition {
-  String get text => throw _privateConstructorUsedError;
-  String get icon => throw _privateConstructorUsedError;
+  String? get text => throw _privateConstructorUsedError;
+  String? get icon => throw _privateConstructorUsedError;
 
   /// Serializes this ForecastCondition to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $ForecastConditionCopyWith<$Res> {
           ForecastCondition value, $Res Function(ForecastCondition) then) =
       _$ForecastConditionCopyWithImpl<$Res, ForecastCondition>;
   @useResult
-  $Res call({String text, String icon});
+  $Res call({String? text, String? icon});
 }
 
 /// @nodoc
@@ -57,18 +57,18 @@ class _$ForecastConditionCopyWithImpl<$Res, $Val extends ForecastCondition>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? text = null,
-    Object? icon = null,
+    Object? text = freezed,
+    Object? icon = freezed,
   }) {
     return _then(_value.copyWith(
-      text: null == text
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      icon: null == icon
+              as String?,
+      icon: freezed == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -81,7 +81,7 @@ abstract class _$$ForecastConditionImplCopyWith<$Res>
       __$$ForecastConditionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String text, String icon});
+  $Res call({String? text, String? icon});
 }
 
 /// @nodoc
@@ -97,18 +97,18 @@ class __$$ForecastConditionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? text = null,
-    Object? icon = null,
+    Object? text = freezed,
+    Object? icon = freezed,
   }) {
     return _then(_$ForecastConditionImpl(
-      text: null == text
+      text: freezed == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      icon: null == icon
+              as String?,
+      icon: freezed == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -122,9 +122,9 @@ class _$ForecastConditionImpl implements _ForecastCondition {
       _$$ForecastConditionImplFromJson(json);
 
   @override
-  final String text;
+  final String? text;
   @override
-  final String icon;
+  final String? icon;
 
   @override
   String toString() {
@@ -163,16 +163,16 @@ class _$ForecastConditionImpl implements _ForecastCondition {
 
 abstract class _ForecastCondition implements ForecastCondition {
   const factory _ForecastCondition(
-      {required final String text,
-      required final String icon}) = _$ForecastConditionImpl;
+      {required final String? text,
+      required final String? icon}) = _$ForecastConditionImpl;
 
   factory _ForecastCondition.fromJson(Map<String, dynamic> json) =
       _$ForecastConditionImpl.fromJson;
 
   @override
-  String get text;
+  String? get text;
   @override
-  String get icon;
+  String? get icon;
 
   /// Create a copy of ForecastCondition
   /// with the given fields replaced by the non-null parameter values.

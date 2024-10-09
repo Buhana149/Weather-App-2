@@ -10,15 +10,15 @@ _$ForecastDayImpl _$$ForecastDayImplFromJson(Map<String, dynamic> json) =>
     _$ForecastDayImpl(
       maxtemp_c: (json['maxtemp_c'] as num).toDouble(),
       mintemp_c: (json['mintemp_c'] as num).toDouble(),
+      avgtemp_c: (json['avgtemp_c'] as num).toDouble(),
       condition:
           ForecastCondition.fromJson(json['condition'] as Map<String, dynamic>),
-      avgtemp_c: (json['avgtemp_c'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$ForecastDayImplToJson(_$ForecastDayImpl instance) =>
     <String, dynamic>{
       'maxtemp_c': instance.maxtemp_c,
       'mintemp_c': instance.mintemp_c,
-      'condition': instance.condition,
       'avgtemp_c': instance.avgtemp_c,
+      'condition': instance.condition,
     };

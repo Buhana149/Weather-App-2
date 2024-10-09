@@ -2,7 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:weather_app_2/freezed/current_weather.dart';
 import 'package:weather_app_2/freezed/forecast_list.dart';
 import 'package:weather_app_2/freezed/location_name.dart';
-import 'package:weather_app_2/freezed/main_forecast.dart';
 
 part 'weather_general.freezed.dart';
 part 'weather_general.g.dart';

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app_2/freezed/forecast.dart';
-import 'package:weather_app_2/freezed/forecast_list.dart';
-import 'package:weather_app_2/freezed/main_forecast.dart';
+import 'package:weather_app_2/freezed/location_name.dart';
 import 'package:weather_app_2/freezed/weather_general.dart';
 import 'package:weather_app_2/services/weather_services.dart';
 
@@ -49,7 +47,7 @@ class WeatherProvider extends ChangeNotifier {
     }
   }
 
-  Future<List<WeatherGeneral>?> fetchCitySuggestionsProvider(pattern) async {
+  Future<List<LocationName>?> fetchCitySuggestionsProvider(pattern) async {
     try {
       final citySuggestion = _weatherServices.fetchCitySuggestions(pattern);
       return citySuggestion;

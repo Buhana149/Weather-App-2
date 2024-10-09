@@ -64,18 +64,18 @@ class _ForecastPageState extends State<ForecastPage> {
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount:
-                                value.forecast!.forecast.forecastday.length,
+                                value.forecast?.forecast.forecastday.length,
                             itemBuilder: (context, index) {
                               String iconUrl =
-                                  'http:${value.forecast!.forecast.forecastday[index].day.condition.icon}';
+                                  'http:${value.forecast?.forecast.forecastday[index].day.condition.icon}';
                               return ForecastTile(
                                 iconImage: iconUrl,
                                 avgTemp:
-                                    '${value.forecast!.forecast.forecastday[index].date}\n${value.forecast!.forecast.forecastday[index].day.avgtemp_c.toInt()} °C',
+                                    '${value.forecast?.forecast.forecastday[index].date}\n${value.forecast?.forecast.forecastday[index].day.avgtemp_c.toInt()} °C',
                                 weatherCondition: '${value.forecast!.forecast
                                     .forecastday[index].day.condition.text}',
                                 maxMinTemp:
-                                    'Max: ${value.forecast!.forecast.forecastday[index].day.maxtemp_c.toInt()} °C\nMin: ${value.forecast!.forecast.forecastday[index].day.mintemp_c.toInt()}°C',
+                                    'Max: ${value.forecast?.forecast.forecastday[index].day.maxtemp_c.toInt()} °C\nMin: ${value.forecast?.forecast.forecastday[index].day.mintemp_c.toInt()}°C',
                               );
                             })
                       ],

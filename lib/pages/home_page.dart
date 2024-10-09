@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                             value.cityTitle!, onPress);
                       },
                       child: Text(
-                        value.cityTitle!,
+                        value.cityTitle ?? '',
                         style: fontSizeXLarge,
                       ),
                     ),

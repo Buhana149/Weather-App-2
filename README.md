@@ -1,8 +1,5 @@
-# weather_app_2
+# Weather App with Freezed package
 
-Weather App with Freezed package
-
-## Getting Started
 
 A cross-platform weather application built using Flutter, following the principles of clean architecture and state management with the Provider package. The app integrates the Freezed package for generating immutable data models and leverages REST API calls to fetch real-time weather data. Key features include:
 

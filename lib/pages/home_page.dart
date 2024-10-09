@@ -18,7 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
   final WeatherProvider weatherProvider = WeatherProvider();
 
   @override
@@ -44,14 +43,15 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 10),
                     InkWell(
                       onTap: () {
-                        void Function(String) onSelected = (selectedValue) { 
+                        void Function(String) onSelected = (selectedValue) {
                           value.setCityTitle(selectedValue);
                         };
                         void Function() onPress = () {
                           value.fetchWeatherProvider();
                         };
-                        
-                        showCitySelectionDialog(context, onSelected, value, value.cityTitle!, onPress);
+
+                        showCitySelectionDialog(context, onSelected, value,
+                            value.cityTitle!, onPress);
                       },
                       child: Text(
                         value.cityTitle!,
@@ -62,8 +62,7 @@ class _HomePageState extends State<HomePage> {
                     HomeWeatherDetails(
                       networkImage:
                           'http:${value.currentWeather?.current.condition.icon}',
-                      currentTemp:
-                          '${value.currentWeather?.current.temp_c}°C',
+                      currentTemp: '${value.currentWeather?.current.temp_c}°C',
                       currentCondition:
                           '${value.currentWeather?.current.condition.text}',
                       maxTemp:
@@ -78,11 +77,13 @@ class _HomePageState extends State<HomePage> {
                         BuildWeatherDetails(
                             label: 'Sunrise',
                             icon: Icons.wb_sunny,
-                            value: value.currentWeather!.forecast.forecastday[0].astro.sunrise),
+                            value: value.currentWeather!.forecast.forecastday[0]
+                                .astro.sunrise),
                         BuildWeatherDetails(
                             label: 'Sunset',
                             icon: Icons.brightness_3,
-                            value: value.currentWeather!.forecast.forecastday[0].astro.sunset),
+                            value: value.currentWeather!.forecast.forecastday[0]
+                                .astro.sunset),
                       ],
                     ),
                     const SizedBox(height: 20),

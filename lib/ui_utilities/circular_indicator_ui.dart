@@ -7,7 +7,7 @@ class CircularIndicatorUi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:purpleGradient,
+      decoration: purpleGradient,
       child: Center(
         child: CircularProgressIndicator(
           color: Colors.white,

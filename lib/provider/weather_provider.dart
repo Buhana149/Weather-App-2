@@ -13,7 +13,7 @@ class WeatherProvider extends ChangeNotifier {
   String? get cityTitle => _cityTitle;
 
   WeatherGeneral? _forecast;
- WeatherGeneral? get forecast => _forecast;
+  WeatherGeneral? get forecast => _forecast;
 
   void setCityTitle(String cityTitle) {
     _cityTitle = cityTitle;
@@ -28,7 +28,7 @@ class WeatherProvider extends ChangeNotifier {
     try {
       final weatherData =
           await _weatherServices.fetchCurrentWeather(cityTitle!);
-          
+
       _currentWeather = weatherData;
       notifyListeners();
     } catch (e) {

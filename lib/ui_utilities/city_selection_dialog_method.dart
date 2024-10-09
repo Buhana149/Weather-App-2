@@ -21,7 +21,6 @@ void showCitySelectionDialog(
           } else {
             print("error location name cannot be extracted from locationMap");
           }
-          
         },
         itemBuilder: (context, suggestion) {
           final citySuggestion = suggestion as LocationName;

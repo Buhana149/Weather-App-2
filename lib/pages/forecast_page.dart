@@ -63,7 +63,8 @@ class _ForecastPageState extends State<ForecastPage> {
                         ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: value.forecast!.forecast.forecastday.length ,
+                            itemCount:
+                                value.forecast!.forecast.forecastday.length,
                             itemBuilder: (context, index) {
                               String iconUrl =
                                   'http:${value.forecast!.forecast.forecastday[0].day.condition.icon}';
@@ -71,8 +72,8 @@ class _ForecastPageState extends State<ForecastPage> {
                                 iconImage: iconUrl,
                                 avgTemp:
                                     '${value.forecast!.forecast.forecastday[0].date}\n${value.forecast!.forecast.forecastday[0].day.avgtemp_c} °C',
-                                weatherCondition:
-                                    value.forecast!.forecast.forecastday[0].day.condition.text,
+                                weatherCondition: value.forecast!.forecast
+                                    .forecastday[0].day.condition.text,
                                 maxMinTemp:
                                     'Max:${value.forecast!.forecast.forecastday[0].day.maxtemp_c} °C\nMin:${value.forecast!.forecast.forecastday[0].day.mintemp_c}',
                               );

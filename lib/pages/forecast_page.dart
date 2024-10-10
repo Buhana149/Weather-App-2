@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:weather_app_2/provider/weather_provider.dart';
 import 'package:weather_app_2/text_styles/background_gradient.dart';
 import 'package:weather_app_2/text_styles/text_style.dart';
-import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
-import 'package:weather_app_2/ui_utilities/forecast_tile.dart';
+import 'package:weather_app_2/utilities/circular_indicator_ui.dart';
+import 'package:weather_app_2/utilities/forecast_tile.dart';
 
 class ForecastPage extends StatefulWidget {
   const ForecastPage({super.key});

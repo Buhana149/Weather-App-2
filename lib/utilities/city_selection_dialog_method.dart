@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app_2/freezed/location_name.dart';
 import 'package:weather_app_2/provider/weather_provider.dart';
-import 'package:weather_app_2/ui_utilities/city_selection_dialog.dart';
-import 'package:weather_app_2/ui_utilities/showCustomDialog.dart';
+import 'package:weather_app_2/utilities/city_selection_dialog.dart';
+import 'package:weather_app_2/utilities/showCustomDialog.dart';
 
 void showCitySelectionDialog(
   BuildContext context,

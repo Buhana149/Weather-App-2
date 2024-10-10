@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app_2/ui_utilities/build_weather_details.dart';
+import 'package:weather_app_2/utilities/build_weather_details.dart';
 
 class SunriseSunsetIndicatiors extends StatelessWidget {
   final sunriseValue;

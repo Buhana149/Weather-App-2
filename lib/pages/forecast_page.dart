@@ -5,6 +5,7 @@ import 'package:weather_app_2/text_styles/background_gradient.dart';
 import 'package:weather_app_2/text_styles/text_style.dart';
 import 'package:weather_app_2/utilities/circular_indicator_ui.dart';
 import 'package:weather_app_2/utilities/forecast_tile.dart';
+import 'package:weather_app_2/utilities/main_forecast_extension.dart';
 
 class ForecastPage extends StatefulWidget {
   const ForecastPage({super.key});
@@ -66,16 +67,19 @@ class _ForecastPageState extends State<ForecastPage> {
                             itemCount:
                                 value.forecast?.forecast.forecastday.length,
                             itemBuilder: (context, index) {
-                              String iconUrl =
-                                  'http:${value.forecast?.forecast.forecastday[index].day.condition.icon}';
                               return ForecastTile(
-                                iconImage: iconUrl,
-                                avgTemp:
-                                    '${value.forecast?.forecast.forecastday[index].date}\n${value.forecast?.forecast.forecastday[index].day.avgtemp_c.toInt()} °C',
-                                weatherCondition:
-                                    '${value.forecast!.forecast.forecastday[index].day.condition.text}',
-                                maxMinTemp:
-                                    'Max: ${value.forecast?.forecast.forecastday[index].day.maxtemp_c.toInt()} °C\nMin: ${value.forecast?.forecast.forecastday[index].day.mintemp_c.toInt()}°C',
+                                iconImage: value.forecast?.forecast
+                                        .forecastday[index].formattedIconUrl ??
+                                    '',
+                                avgTemp: value.forecast?.forecast
+                                        .forecastday[index].formattedAvgTemp ??
+                                    '',
+                                weatherCondition: value.forecast?.forecast
+                                        .forecastday[index].weatherCondition ??
+                                    '',
+                                maxMinTemp: value.forecast?.forecast
+                                        .forecastday[index].maxMinTemp ??
+                                    '',
                               );
                             })
                       ],

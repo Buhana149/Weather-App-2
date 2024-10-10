@@ -5,7 +5,7 @@ import 'package:weather_app_2/text_styles/background_gradient.dart';
 import 'package:weather_app_2/text_styles/text_style.dart';
 import 'package:weather_app_2/utilities/circular_indicator_ui.dart';
 import 'package:weather_app_2/utilities/forecast_tile.dart';
-import 'package:weather_app_2/utilities/main_forecast_extension.dart';
+import 'package:weather_app_2/utilities/forecast_extension.dart';
 
 class ForecastPage extends StatefulWidget {
   const ForecastPage({super.key});

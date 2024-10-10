@@ -16,4 +16,17 @@ extension ForecastExtension on Forecast {
   String get maxMinTemp {
     return 'Max: ${this.day.maxtemp_c.toInt()} °C\nMin: ${this.day.mintemp_c.toInt()} °C';
   }
+  String get formattedmaxTemp {
+    return 'Max: ${this.day.maxtemp_c}°C';
+  } 
+   String get formattedminTemp {
+    return 'Min: ${this.day.mintemp_c}°C';
+  }
+ String get formattedSunset {
+    return this.astro.sunset;
+  }
+  String get formattedSunrise {
+    return this.astro.sunrise;
+  }
 }
+

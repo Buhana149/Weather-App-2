@@ -7,7 +7,9 @@ import 'package:weather_app_2/text_styles/text_style.dart';
 import 'package:weather_app_2/utilities/build_weather_details.dart';
 import 'package:weather_app_2/utilities/circular_indicator_ui.dart';
 import 'package:weather_app_2/utilities/city_selection_dialog_method.dart';
+import 'package:weather_app_2/utilities/currentweather_extension.dart';
 import 'package:weather_app_2/utilities/forecast_button.dart';
+import 'package:weather_app_2/utilities/forecast_extension.dart';
 import 'package:weather_app_2/utilities/home_weather_details.dart';
 
 class HomePage extends StatefulWidget {
@@ -61,14 +63,17 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 10),
                     HomeWeatherDetails(
                       networkImage:
-                          'http:${value.currentWeather?.current.condition.icon}',
-                      currentTemp: '${value.currentWeather?.current.temp_c.toInt()}°C',
+                          value.currentWeather?.current.networkImage ?? '',
+                      currentTemp:
+                          value.currentWeather?.current.currentTemp ?? '',
                       currentCondition:
-                          '${value.currentWeather?.current.condition.text}',
-                      maxTemp:
-                          'Max: ${value.currentWeather?.forecast.forecastday[0].day.maxtemp_c}°C',
-                      minTemp:
-                          'Min: ${value.currentWeather?.forecast.forecastday[0].day.mintemp_c}°C',
+                          value.currentWeather?.current.currentCondition ?? '',
+                      maxTemp: value.currentWeather?.forecast.forecastday[0]
+                              .formattedmaxTemp ??
+                          '',
+                      minTemp: value.currentWeather?.forecast.forecastday[0]
+                              .formattedminTemp ??
+                          '',
                     ),
                     SizedBox(height: 45),
                     Row(
@@ -78,12 +83,12 @@ class _HomePageState extends State<HomePage> {
                             label: 'Sunrise',
                             icon: Icons.wb_sunny,
                             value: value.currentWeather!.forecast.forecastday[0]
-                                .astro.sunrise),
+                                .formattedSunrise),
                         BuildWeatherDetails(
                             label: 'Sunset',
                             icon: Icons.brightness_3,
                             value: value.currentWeather!.forecast.forecastday[0]
-                                .astro.sunset),
+                                .formattedSunset),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -93,11 +98,13 @@ class _HomePageState extends State<HomePage> {
                         BuildWeatherDetails(
                             label: 'Humidity',
                             icon: Icons.opacity,
-                            value: value.currentWeather?.current.humidity),
+                            value: value
+                                .currentWeather?.current.formattedHumidity),
                         BuildWeatherDetails(
                             label: 'Wind (KPH)',
                             icon: Icons.wind_power,
-                            value: value.currentWeather?.current.wind_kph),
+                            value:
+                                value.currentWeather?.current.formattedWindKph),
                       ],
                     ),
                     const SizedBox(height: 20),

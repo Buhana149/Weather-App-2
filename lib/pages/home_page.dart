@@ -18,7 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
   final WeatherProvider weatherProvider = WeatherProvider();
 
   @override
@@ -45,32 +44,32 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(height: 10),
                     InkWell(
                       onTap: () {
-                        void Function(String) onSelected = (selectedValue) { 
+                        void Function(String) onSelected = (selectedValue) {
                           value.setCityTitle(selectedValue);
                         };
                         void Function() onPress = () {
                           value.fetchWeatherProvider();
                         };
-                        
-                        showCitySelectionDialog(context, onSelected, value, value.cityTitle!, onPress);
+
+                        showCitySelectionDialog(context, onSelected, value,
+                            value.cityTitle!, onPress);
                       },
                       child: Text(
-                        value.cityTitle!,
+                        value.cityTitle ?? '',
                         style: fontSizeXLarge,
                       ),
                     ),
                     SizedBox(height: 10),
                     HomeWeatherDetails(
                       networkImage:
-                          'http:${value.currentWeather?['current']['condition']['icon']}',
-                      currentTemp:
-                          '${value.currentWeather?['current']['temp_c'].round()}°C',
+                          'http:${value.currentWeather?.current.condition.icon}',
+                      currentTemp: '${value.currentWeather?.current.temp_c.toInt()}°C',
                       currentCondition:
-                          '${value.currentWeather?['current']['condition']['text']}',
+                          '${value.currentWeather?.current.condition.text}',
                       maxTemp:
-                          'Max: ${value.currentWeather?['forecast']['forecastday'][0]['day']['maxtemp_c'].round()}°C',
+                          'Max: ${value.currentWeather?.forecast.forecastday[0].day.maxtemp_c}°C',
                       minTemp:
-                          'Min: ${value.currentWeather?['forecast']['forecastday'][0]['day']['mintemp_c'].round()}°C',
+                          'Min: ${value.currentWeather?.forecast.forecastday[0].day.mintemp_c}°C',
                     ),
                     SizedBox(height: 45),
                     Row(
@@ -79,13 +78,13 @@ class _HomePageState extends State<HomePage> {
                         BuildWeatherDetails(
                             label: 'Sunrise',
                             icon: Icons.wb_sunny,
-                            value: value.currentWeather!['forecast']
-                                ['forecastday'][0]['astro']['sunrise']),
+                            value: value.currentWeather!.forecast.forecastday[0]
+                                .astro.sunrise),
                         BuildWeatherDetails(
                             label: 'Sunset',
                             icon: Icons.brightness_3,
-                            value: value.currentWeather!['forecast']
-                                ['forecastday'][0]['astro']['sunset']),
+                            value: value.currentWeather!.forecast.forecastday[0]
+                                .astro.sunset),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -95,13 +94,11 @@ class _HomePageState extends State<HomePage> {
                         BuildWeatherDetails(
                             label: 'Humidity',
                             icon: Icons.opacity,
-                            value: value.currentWeather?['current']
-                                ['humidity']),
+                            value: value.currentWeather?.current.humidity),
                         BuildWeatherDetails(
                             label: 'Wind (KPH)',
                             icon: Icons.wind_power,
-                            value: value.currentWeather?['current']
-                                ['wind_kph']),
+                            value: value.currentWeather?.current.wind_kph),
                       ],
                     ),
                     const SizedBox(height: 20),

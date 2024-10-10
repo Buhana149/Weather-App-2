@@ -7,7 +7,6 @@ import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
 import 'package:weather_app_2/ui_utilities/forecast_tile.dart';
 
 class ForecastPage extends StatefulWidget {
-
   const ForecastPage({super.key});
 
   @override
@@ -15,9 +14,7 @@ class ForecastPage extends StatefulWidget {
 }
 
 class _ForecastPageState extends State<ForecastPage> {
-  
   final WeatherProvider weatherProvider = WeatherProvider();
-  
 
   @override
   void initState() {
@@ -67,19 +64,19 @@ class _ForecastPageState extends State<ForecastPage> {
                         ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: value.forecast?.length ?? 0,
+                            itemCount:
+                                value.forecast?.forecast.forecastday.length,
                             itemBuilder: (context, index) {
-                              final day = value.forecast?[index] ?? 0;
                               String iconUrl =
-                                  'http:${day['day']['condition']['icon']}';
+                                  'http:${value.forecast?.forecast.forecastday[index].day.condition.icon}';
                               return ForecastTile(
                                 iconImage: iconUrl,
                                 avgTemp:
-                                    '${day['date']}\n${day['day']['avgtemp_c'].round()} °C',
-                                weatherCondition: day['day']['condition']
-                                    ['text'],
+                                    '${value.forecast?.forecast.forecastday[index].date}\n${value.forecast?.forecast.forecastday[index].day.avgtemp_c.toInt()} °C',
+                                weatherCondition:
+                                    '${value.forecast!.forecast.forecastday[index].day.condition.text}',
                                 maxMinTemp:
-                                    'Max:${day['day']['maxtemp_c']} °C\nMin:${day['day']['mintemp_c']}',
+                                    'Max: ${value.forecast?.forecast.forecastday[index].day.maxtemp_c.toInt()} °C\nMin: ${value.forecast?.forecast.forecastday[index].day.mintemp_c.toInt()}°C',
                               );
                             })
                       ],

@@ -72,8 +72,8 @@ class _ForecastPageState extends State<ForecastPage> {
                                 iconImage: iconUrl,
                                 avgTemp:
                                     '${value.forecast?.forecast.forecastday[index].date}\n${value.forecast?.forecast.forecastday[index].day.avgtemp_c.toInt()} °C',
-                                weatherCondition: '${value.forecast!.forecast
-                                    .forecastday[index].day.condition.text}',
+                                weatherCondition:
+                                    '${value.forecast!.forecast.forecastday[index].day.condition.text}',
                                 maxMinTemp:
                                     'Max: ${value.forecast?.forecast.forecastday[index].day.maxtemp_c.toInt()} °C\nMin: ${value.forecast?.forecast.forecastday[index].day.mintemp_c.toInt()}°C',
                               );

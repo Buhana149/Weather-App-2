@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app_2/freezed/location_name.dart';
 import 'package:weather_app_2/provider/weather_provider.dart';
-import 'package:weather_app_2/ui_utilities/city_selection_dialog.dart';
-import 'package:weather_app_2/ui_utilities/showCustomDialog.dart';
+import 'package:weather_app_2/utilities/city_selection_dialog.dart';
+import 'package:weather_app_2/utilities/showCustomDialog.dart';
 
 void showCitySelectionDialog(
   BuildContext context,
@@ -14,18 +15,17 @@ void showCitySelectionDialog(
       context: context,
       dialogContent: CitySelectionDialog(
         onSelected: (locationMap) {
-          if (locationMap is Map<String, dynamic>) {
-            cityTitle = locationMap["name"] as String;
+          if (locationMap is LocationName) {
+            cityTitle = locationMap.name;
             onSelected(cityTitle);
           } else {
             print("error location name cannot be extracted from locationMap");
           }
-          
         },
         itemBuilder: (context, suggestion) {
-          final citySuggestion = suggestion as Map<String, dynamic>?;
+          final citySuggestion = suggestion as LocationName;
           return ListTile(
-            title: Text(citySuggestion?['name'] ?? 'Unknown City'),
+            title: Text(citySuggestion.name),
           );
         },
         suggestionsCallback: (pattern) async {

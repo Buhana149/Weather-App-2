@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeWeatherDetails extends StatelessWidget {
-
   final String networkImage;
   final String currentTemp;
   final String currentCondition;
   final String maxTemp;
   final String minTemp;
-  
+
   const HomeWeatherDetails({
     super.key,
     required this.networkImage,
@@ -24,7 +23,7 @@ class HomeWeatherDetails extends StatelessWidget {
       child: Column(
         children: [
           Image.network(
-           networkImage,
+            networkImage,
             height: 100,
             width: 100,
             fit: BoxFit.cover,
@@ -60,7 +59,7 @@ class HomeWeatherDetails extends StatelessWidget {
                 ),
               ),
               Text(
-               minTemp,
+                minTemp,
                 style: GoogleFonts.lato(
                   fontSize: 22,
                   color: Colors.white70,

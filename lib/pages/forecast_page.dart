@@ -3,11 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:weather_app_2/provider/weather_provider.dart';
 import 'package:weather_app_2/text_styles/background_gradient.dart';
 import 'package:weather_app_2/text_styles/text_style.dart';
-import 'package:weather_app_2/ui_utilities/circular_indicator_ui.dart';
-import 'package:weather_app_2/ui_utilities/forecast_tile.dart';
+import 'package:weather_app_2/utilities/circular_indicator_ui.dart';
+import 'package:weather_app_2/utilities/forecast_tile.dart';
+import 'package:weather_app_2/utilities/forecast_extension.dart';
 
 class ForecastPage extends StatefulWidget {
-
   const ForecastPage({super.key});
 
   @override
@@ -15,13 +15,10 @@ class ForecastPage extends StatefulWidget {
 }
 
 class _ForecastPageState extends State<ForecastPage> {
-  
   final WeatherProvider weatherProvider = WeatherProvider();
-  
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await Provider.of<WeatherProvider>(context, listen: false)
@@ -67,19 +64,22 @@ class _ForecastPageState extends State<ForecastPage> {
                         ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: value.forecast?.length ?? 0,
+                            itemCount:
+                                value.forecast?.forecast.forecastday.length,
                             itemBuilder: (context, index) {
-                              final day = value.forecast?[index] ?? 0;
-                              String iconUrl =
-                                  'http:${day['day']['condition']['icon']}';
                               return ForecastTile(
-                                iconImage: iconUrl,
-                                avgTemp:
-                                    '${day['date']}\n${day['day']['avgtemp_c'].round()} °C',
-                                weatherCondition: day['day']['condition']
-                                    ['text'],
-                                maxMinTemp:
-                                    'Max:${day['day']['maxtemp_c']} °C\nMin:${day['day']['mintemp_c']}',
+                                iconImage: value.forecast?.forecast
+                                        .forecastday[index].formattedIconUrl ??
+                                    '',
+                                avgTemp: value.forecast?.forecast
+                                        .forecastday[index].formattedAvgTemp ??
+                                    '',
+                                weatherCondition: value.forecast?.forecast
+                                        .forecastday[index].weatherCondition ??
+                                    '',
+                                maxMinTemp: value.forecast?.forecast
+                                        .forecastday[index].maxMinTemp ??
+                                    '',
                               );
                             })
                       ],

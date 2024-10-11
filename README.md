@@ -9,3 +9,6 @@ API Integration: Weather data fetched via REST API with models generated using t
 User Interface: Displays real-time weather information, including current conditions, forecasts, and location-based weather suggestions.
 Technologies: Flutter, Provider, Freezed, Clean Architecture, REST API, JSON serialization.
 
+![Thumbnail](https://drive.google.com/uc?export=view&id=19MMLoltkht7qDxCUVaFoZxgH0C3oRrjc)
+
+[![Watch the Video]](https://drive.google.com/file/d/1T4tM14XnOhAd2duFqMq-ZiurAT9wOBzH/view?usp=sharing)
